@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karrent", "Karrent\Karrent.csproj", "{00C724CC-DEEE-47AC-95DC-6DAA3A90FD86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00C724CC-DEEE-47AC-95DC-6DAA3A90FD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C724CC-DEEE-47AC-95DC-6DAA3A90FD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C724CC-DEEE-47AC-95DC-6DAA3A90FD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C724CC-DEEE-47AC-95DC-6DAA3A90FD86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F4CB9F6-F8D0-459B-8B48-C9352B4ECF77}
+	EndGlobalSection
+EndGlobal
