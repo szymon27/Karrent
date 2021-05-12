@@ -5,8 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="KarRent" Height="500" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="345*"></ColumnDefinition>
+            <ColumnDefinition Width="197*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="..\Resources\logo.png" Grid.Column="0" HorizontalAlignment="Left" Height="50" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Top" Width="250"/>
+        <StackPanel x:Name="stackPanelButtons" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnControlPanel" Content="CONTROL PANEL" Width="100" Height="30" Margin="0, 0, 10, 0" Visibility="Hidden" Click="btnControlPanel_Click"/>
+            <Button x:Name="btnSignUp" Content="Sign up" Width="100" Height="25" Margin="0, 0, 10, 0" Click="btnSignUp_Click"/>
+            <Button x:Name="btnSignIn" Content="Sign in" Width="100" Height="25" Margin="0, 0, 10, 0" Click="btnSignIn_Click"/>
+            <Label x:Name="txtCurrentUser" Width="100" Height="30" Margin="0, 0, 10, 0"/>
+        </StackPanel>
+        <StackPanel x:Name="stackPanelFilters" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left">
+            <ComboBox x:Name="cmbSorting" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbSorting_SelectionChanged"/>
+            <ComboBox x:Name="cmbFilterBrand" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterBrand_SelectionChanged"/>
+            <ComboBox x:Name="cmbFilterModel" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterModel_SelectionChanged"/>
+            <ComboBox x:Name="cmbFilterBody" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterBody_SelectionChanged"/>
+            <ComboBox x:Name="cmbFilterEngineType" Text="SORTUJ" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterEngineType_SelectionChanged"/>
+            <Button x:Name="btnRemoveFilters" Content ="Remove Filters" Width="100" Height="25" Margin="5,12,0,12" Click="btnRemoveFilters_Click"/>
+            <Button x:Name="btnRefresh" Content ="Refresh" Width="100" Height="25" Margin="5,12,0,12" Click="btnRefresh_Click"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="scrollViewer" VerticalScrollBarVisibility="Hidden">
+            <ItemsControl x:Name="listView" ItemsSource="{Binding Car}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2" BorderBrush="Red" CornerRadius="20" Margin="10">
+                            <StackPanel Background="White" Width="150" Height="200" Margin="5">
+                                <Border CornerRadius="5"></Border>
+                                <Image Source="{Binding CarDetails.Photo}"></Image>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Brand: " Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Brand}" Foreground="Red"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Model: " Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Model}" Foreground="Red"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Price/h: " Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Price}" Foreground="Red"/>
+                                </Grid>
+                                <Button Content="Order" Tag="{Binding Id}" BorderBrush="Red" Background="White" Foreground="Red" Height="40" Click="createReservationWindow"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>
