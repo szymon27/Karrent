@@ -14,12 +14,12 @@ namespace Karrent.Objects
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         public User(int id, UserTypes userType, string username, string password, string name,
-            string surname, DateTime birthDate, bool isActive, DateTime creationDate)
+            string surname, DateTime? birthDate, bool isActive, DateTime? creationDate)
         {
             this.Id = id;
             this.UserType = userType;
