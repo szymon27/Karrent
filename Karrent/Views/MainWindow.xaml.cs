@@ -32,7 +32,8 @@ namespace Karrent.Views
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
-
+            SignUpWindow signUpWindow = new SignUpWindow();
+            signUpWindow.ShowDialog();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)

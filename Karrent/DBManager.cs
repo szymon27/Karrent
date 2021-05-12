@@ -117,5 +117,23 @@ namespace Karrent
                 return new User(0, UserTypes.Guest, String.Empty, String.Empty, String.Empty, String.Empty, null, true, null);
             }
         }
+
+        public bool AddUser(string username, string password, string name, string surname, string birthDate)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call addUser(\"{username}\", \"{password}\", \"{name}\",\"{surname}\",\'{birthDate}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
