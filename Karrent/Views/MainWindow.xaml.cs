@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Karrent
+namespace Karrent.Views
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
