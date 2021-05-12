@@ -37,7 +37,35 @@ namespace Karrent.Views
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CurrentUser.GetInstance().User.UserType == UserTypes.Guest)
+            {
+                SignInWindow signInWindow = new SignInWindow();
+                signInWindow.ShowDialog();
+                if (CurrentUser.GetInstance().User.UserType != UserTypes.Guest)
+                {
+                    if (btnSignUp.Visibility == Visibility.Visible)
+                        btnSignUp.Visibility = Visibility.Hidden;
+                    if (btnSignIn.Content.ToString() == "SIGN IN")
+                        btnSignIn.Content = "LOGOUT";
+                    txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
+                    if (CurrentUser.GetInstance().User.UserType != UserTypes.Customer)
+                    {
+                        if (btnControlPanel.Visibility == Visibility.Hidden)
+                            btnControlPanel.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+            else
+            {
+                if (btnSignUp.Visibility == Visibility.Hidden)
+                    btnSignUp.Visibility = Visibility.Visible;
+                if (btnSignIn.Content.ToString() == "LOGOUT")
+                    btnSignIn.Content = "SIGN IN";
+                if (btnControlPanel.Visibility == Visibility.Visible)
+                    btnControlPanel.Visibility = Visibility.Hidden;
+                CurrentUser.GetInstance().SetUserAsGuest();
+                txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
+            }
         }
 
         private void btnControlPanel_Click(object sender, RoutedEventArgs e)

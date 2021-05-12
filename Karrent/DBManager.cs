@@ -70,5 +70,52 @@ namespace Karrent
                 return list;
             }
         }
+
+        public UserTypes CheckUser(string username, string password)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call checkUser(\"{username}\", \"{password}\");", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                UserTypes result = UserTypes.Guest;
+                while (mySqlDataReader.Read())
+                    result = (UserTypes)mySqlDataReader.GetInt32(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return UserTypes.Guest;
+            }
+        }
+
+        public User GetUser(string username, string password)
+        {
+            User user = new User(0, UserTypes.Guest, String.Empty, String.Empty, String.Empty, String.Empty, null, true, null);
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getUser(\"{username}\", \"{password}\");", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    int id = mySqlDataReader.GetInt32(0);
+                    UserTypes userType = (UserTypes)mySqlDataReader.GetInt32(1);
+                    //username (2)
+                    //password (3)
+                    string name = mySqlDataReader.GetString(4);
+                    string surname = mySqlDataReader.GetString(5);
+                    DateTime birthDate = mySqlDataReader.GetDateTime(6);
+                    bool isActive = mySqlDataReader.GetBoolean(7);
+                    DateTime creationDate = mySqlDataReader.GetDateTime(8);
+                    user = new User(id, userType, username, password, name, surname, birthDate, isActive, creationDate);
+                }
+                mySqlDataReader.Close();
+                return user;
+            }
+            catch
+            {
+                return new User(0, UserTypes.Guest, String.Empty, String.Empty, String.Empty, String.Empty, null, true, null);
+            }
+        }
     }
 }
