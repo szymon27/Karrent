@@ -11,7 +11,7 @@ namespace Karrent
     {
         public static void Show(string message)
         {
-            MessageBox.Show(message, "KarRent", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(message, "KarRent", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

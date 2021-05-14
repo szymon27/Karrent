@@ -16,7 +16,7 @@ namespace Karrent
 
         protected CurrentUser() 
         {
-            User = new User(0, UserTypes.Guest, String.Empty, String.Empty, String.Empty, String.Empty, null, true, null);        
+            SetUserAsGuest(); 
         }
 
         public static CurrentUser GetInstance()

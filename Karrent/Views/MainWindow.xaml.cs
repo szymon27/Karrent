@@ -111,7 +111,9 @@ namespace Karrent.Views
 
         private void createReservationWindow(object sender, RoutedEventArgs e)
         {
-
+            int id = Convert.ToInt32(((Button)sender).Tag.ToString());
+            ReservationWindow reservationWindow = new ReservationWindow(id);
+            reservationWindow.ShowDialog();
         }
     }
 }

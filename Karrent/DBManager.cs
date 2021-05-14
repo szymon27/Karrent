@@ -42,7 +42,7 @@ namespace Karrent
             List<Car> list = new List<Car>();
             try
             {
-                MySqlCommand mySqlCommand = new MySqlCommand("call getCars();", _instance.mySqlConnection);
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getCars();", _instance.mySqlConnection);
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 while (mySqlDataReader.Read())
                 {
@@ -123,6 +123,111 @@ namespace Karrent
             try
             {
                 MySqlCommand mySqlCommand = new MySqlCommand($"call addUser(\"{username}\", \"{password}\", \"{name}\",\"{surname}\",\'{birthDate}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Car GetCarById(int id)
+        {
+            Car car = null;
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getCarById({id});", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool hasRows = mySqlDataReader.HasRows;
+                if (!hasRows)
+                    return null;
+                while (mySqlDataReader.Read())
+                {
+                    //int id = mySqlDataReader.GetInt32(0);
+                    string plateNumber = mySqlDataReader.GetString(1);
+                    double mileage = mySqlDataReader.GetDouble(2);
+                    bool isActive = mySqlDataReader.GetBoolean(3);
+                    DateTime inspectionDate = mySqlDataReader.GetDateTime(4);
+                    int idCarDetails = mySqlDataReader.GetInt32(5);
+                    BodyTypes bodyType = (BodyTypes)mySqlDataReader.GetInt32(6);
+                    EngineTypes engineType = (EngineTypes)mySqlDataReader.GetInt32(7);
+                    string brand = mySqlDataReader.GetString(8);
+                    string model = mySqlDataReader.GetString(9);
+                    int horsePower = mySqlDataReader.GetInt32(10);
+                    decimal price = mySqlDataReader.GetDecimal(11);
+                    byte[] photo = (byte[])mySqlDataReader[12];
+                    CarDetails carDetails = new CarDetails(idCarDetails, bodyType, engineType, brand, model, horsePower, price, photo.ToBitmapImage());
+                    car = new Car(id, carDetails, plateNumber, mileage, isActive, inspectionDate);
+                }
+                mySqlDataReader.Close();
+                return car;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<ReservationPeriod> GetDatesOfCar(int id)
+        {
+            List<ReservationPeriod> list = new List<ReservationPeriod>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getDatesOfCar({id});", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    DateTime begin = mySqlDataReader.GetDateTime(0);
+                    DateTime end = mySqlDataReader.GetDateTime(1);
+                    list.Add(new ReservationPeriod(begin, end));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public List<SecurityPackage> GetSecurityPackages()
+        {
+            List<SecurityPackage> list = new List<SecurityPackage>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand("call getSecurityPackages();", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    int id = mySqlDataReader.GetInt32(0);
+                    string name = mySqlDataReader.GetString(1);
+                    string description = mySqlDataReader.GetString(2);
+                    decimal price = mySqlDataReader.GetDecimal(3);
+                    list.Add(new SecurityPackage(id, name, description, price));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public bool AddReservation(int carId, int securityPackadeId, ReservationPeriod reservationPeriod, decimal price)
+        {
+            try
+            {
+                int userId = CurrentUser.GetInstance().User.Id;
+                string dateBegin = reservationPeriod.Begin.GetValueOrDefault().ToString("yyyy-MM-dd");
+                string dateEnd = reservationPeriod.End.GetValueOrDefault().ToString("yyyy-MM-dd");
+                //.ToString(CultureInfo.GetCultureInfo("en-GB"))
+                MySqlCommand mySqlCommand = new MySqlCommand($"call addReservation({userId}, {carId}, {securityPackadeId}, \'{dateBegin}\', \'{dateEnd}\', {price.ToString(CultureInfo.GetCultureInfo("en-GB"))});", _instance.mySqlConnection);
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 bool result = false;
                 while (mySqlDataReader.Read())
