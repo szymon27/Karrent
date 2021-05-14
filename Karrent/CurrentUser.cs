@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Karrent.Enums;
 using Karrent.Objects;
+using Karrent.Views;
 
 namespace Karrent
 {
     class CurrentUser
     {
         public User User { get; set; }
+        public MainWindow MainWindow { get; set; }
 
         protected static CurrentUser _instance;
 
@@ -28,6 +30,7 @@ namespace Karrent
         public void SetCredentials(User user)
         {
             this.User = user;
+            this.MainWindow.setButtonsAfterLogin();
         }
 
         public void SetUserAsGuest()

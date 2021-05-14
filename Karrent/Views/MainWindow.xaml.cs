@@ -26,7 +26,8 @@ namespace Karrent.Views
         public MainWindow()
         {
             InitializeComponent();
-            cars = DBManager.GetInstance().GetCars();
+            CurrentUser.GetInstance().MainWindow = this;
+            cars = DBManager.GetInstance().GetActiveCars();
             listView.ItemsSource = cars;
         }
 
@@ -36,25 +37,30 @@ namespace Karrent.Views
             signUpWindow.ShowDialog();
         }
 
+        public void setButtonsAfterLogin()
+        {
+            if (CurrentUser.GetInstance().User.UserType != UserTypes.Guest)
+            {
+                if (btnSignUp.Visibility == Visibility.Visible)
+                    btnSignUp.Visibility = Visibility.Hidden;
+                if (btnSignIn.Content.ToString() == "SIGN IN")
+                    btnSignIn.Content = "LOGOUT";
+                txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
+                if (CurrentUser.GetInstance().User.UserType != UserTypes.Customer)
+                {
+                    if (btnControlPanel.Visibility == Visibility.Hidden)
+                        btnControlPanel.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentUser.GetInstance().User.UserType == UserTypes.Guest)
             {
                 SignInWindow signInWindow = new SignInWindow();
                 signInWindow.ShowDialog();
-                if (CurrentUser.GetInstance().User.UserType != UserTypes.Guest)
-                {
-                    if (btnSignUp.Visibility == Visibility.Visible)
-                        btnSignUp.Visibility = Visibility.Hidden;
-                    if (btnSignIn.Content.ToString() == "SIGN IN")
-                        btnSignIn.Content = "LOGOUT";
-                    txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
-                    if (CurrentUser.GetInstance().User.UserType != UserTypes.Customer)
-                    {
-                        if (btnControlPanel.Visibility == Visibility.Hidden)
-                            btnControlPanel.Visibility = Visibility.Visible;
-                    }
-                }
+                setButtonsAfterLogin();
             }
             else
             {
@@ -101,7 +107,8 @@ namespace Karrent.Views
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            cars = DBManager.GetInstance().GetActiveCars();
+            listView.ItemsSource = cars;
         }
 
         private void btnRemoveFilters_Click(object sender, RoutedEventArgs e)

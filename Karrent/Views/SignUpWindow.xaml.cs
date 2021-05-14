@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Karrent.Enums;
+using Karrent.Objects;
 
 namespace Karrent.Views
 {
@@ -71,6 +73,11 @@ namespace Karrent.Views
 
             if (DBManager.GetInstance().AddUser(username, password, name, surname, birthDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
             {
+                User user = DBManager.GetInstance().GetUser(username, password);
+                if (user.Id == 0)
+                    ErrorBox.Show("nie udało się pobrać danych użytkownika");
+                else
+                    CurrentUser.GetInstance().SetCredentials(user);
                 this.Close();
             }
             else

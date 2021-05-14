@@ -26,7 +26,7 @@ namespace Karrent.Views
             InitializeComponent();
         }
 
-        private void btnSingIn_Click(object sender, RoutedEventArgs e)
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
             string password = passPassword.Password;
@@ -35,7 +35,6 @@ namespace Karrent.Views
                 ErrorBox.Show("nie udało się zalogować");
             else
             {
-                //CurrentUser.GetInstance().SetCredentials(username, password, (UserType)type);
                 User user = DBManager.GetInstance().GetUser(username, password);
                 if (user.Id == 0)
                     ErrorBox.Show("nie udało się pobrać danych użytkownika");
@@ -45,6 +44,13 @@ namespace Karrent.Views
                     this.Close();
                 }
             }
+        }
+
+        private void btnSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            SignUpWindow signUpWindow = new SignUpWindow();
+            signUpWindow.ShowDialog();
         }
     }
 }

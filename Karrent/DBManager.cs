@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Globalization;
 using Karrent.Objects;
 using Karrent.Enums;
+using System.Linq;
 
 namespace Karrent
 {
@@ -69,6 +70,11 @@ namespace Karrent
             {
                 return list;
             }
+        }
+
+        public List<Car> GetActiveCars()
+        {
+            return GetCars().Where(car => car.IsActive == true && car.InspectionDate > DateTime.Now).ToList();
         }
 
         public UserTypes CheckUser(string username, string password)

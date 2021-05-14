@@ -29,8 +29,6 @@ namespace Karrent.Views
         {
             InitializeComponent();
             DateTime now = DateTime.Now;
-            //dpckBegin.SelectedDate = DateTime.Now;
-            //dpckEnd.SelectedDate = DateTime.Now;
             dpckBegin.BlackoutDates.AddDatesInPast();
             dpckEnd.BlackoutDates.AddDatesInPast();
         }
@@ -47,7 +45,7 @@ namespace Karrent.Views
             }
             foreach (ReservationPeriod e in reservationPeriods)
                 lbxReservationDates.Items.Add(e.ToString());
-            //lbxReservationDates.ItemsSource = reservationPeriods;
+
             foreach (ReservationPeriod element in reservationPeriods)
             {
                 CalendarDateRange calendarDateRange = new CalendarDateRange(element.Begin.GetValueOrDefault(), element.End.GetValueOrDefault());
@@ -104,8 +102,11 @@ namespace Karrent.Views
 
             if (UserTypes.Guest == CurrentUser.GetInstance().User.UserType)
             {
-                ErrorBox.Show("zaloguj się");
-                return;
+                SignInWindow signInWindow = new SignInWindow();
+                signInWindow.ShowDialog();
+
+                if(UserTypes.Guest == CurrentUser.GetInstance().User.UserType)
+                    return;
             }
 
             int securityPackageId = securityPackages.ElementAt(0).Id;
