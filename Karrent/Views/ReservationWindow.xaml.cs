@@ -43,8 +43,8 @@ namespace Karrent.Views
                 txtCarDetails.Text = car.ToString();
                 imgCar.Source = car.CarDetails.Photo;
             }
-            foreach (ReservationPeriod e in reservationPeriods)
-                lbxReservationDates.Items.Add(e.ToString());
+            //foreach (ReservationPeriod e in reservationPeriods) //usuniety label
+                //lbxReservationDates.Items.Add(e.ToString());
 
             foreach (ReservationPeriod element in reservationPeriods)
             {
@@ -117,6 +117,31 @@ namespace Karrent.Views
             decimal price = GetPrice();
             if (DBManager.GetInstance().AddReservation(car.Id, securityPackageId, new ReservationPeriod(datebegin, dateend), price))
                 InfoBox.Show(price.ToString());
+        }
+
+        private void dpckBegin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblPrice.Content = GetPrice().ToString("F2");
+        }
+
+        private void dpckEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblPrice.Content = GetPrice().ToString("F2");
+        }
+
+        private void rbtn1_Click(object sender, RoutedEventArgs e)
+        {
+            lblPrice.Content = GetPrice().ToString("F2");
+        }
+
+        private void rbtn2_Click(object sender, RoutedEventArgs e)
+        {
+            lblPrice.Content = GetPrice().ToString("F2");
+        }
+
+        private void rbtn3_Click(object sender, RoutedEventArgs e)
+        {
+            lblPrice.Content = GetPrice().ToString("F2");
         }
     }
 }

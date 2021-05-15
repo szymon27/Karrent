@@ -28,7 +28,7 @@
             <ComboBox x:Name="cmbSorting" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbSorting_SelectionChanged"/>
             <ComboBox x:Name="cmbFilterBrand" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterBrand_SelectionChanged"/>
             <ComboBox x:Name="cmbFilterModel" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterModel_SelectionChanged"/>
-            <ComboBox x:Name="cmbFilterBody" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterBody_SelectionChanged"/>
+            <ComboBox x:Name="cmbFilterBodyType" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterBodyType_SelectionChanged"/>
             <ComboBox x:Name="cmbFilterEngineType" Text="SORTUJ" Width="100" Height="25" Margin="5,12,0,12" SelectionChanged="cmbFilterEngineType_SelectionChanged"/>
             <Button x:Name="btnRemoveFilters" Content ="Remove Filters" Width="100" Height="25" Margin="5,12,0,12" Click="btnRemoveFilters_Click"/>
             <Button x:Name="btnRefresh" Content ="Refresh" Width="100" Height="25" Margin="5,12,0,12" Click="btnRefresh_Click"/>

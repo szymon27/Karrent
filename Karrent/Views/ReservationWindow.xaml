@@ -7,14 +7,15 @@
         mc:Ignorable="d"
        Title="ReservationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListBox x:Name="lbxReservationDates" HorizontalAlignment="Left" Height="220" Margin="266,10,0,0" VerticalAlignment="Top" Width="266"/>
-        <RadioButton x:Name="rbtn1" Content="RadioButton" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" GroupName="SecurityPackage"/>
-        <RadioButton x:Name="rbtn2" Content="RadioButton" HorizontalAlignment="Left" Margin="10,306,0,0" VerticalAlignment="Top" GroupName="SecurityPackage"/>
-        <RadioButton x:Name="rbtn3" Content="RadioButton" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top" GroupName="SecurityPackage"/>
-        <DatePicker x:Name="dpckBegin" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpckEnd" HorizontalAlignment="Left" Margin="157,235,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbtn1" Content="RadioButton" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn1_Click"/>
+        <RadioButton x:Name="rbtn2" Content="RadioButton" HorizontalAlignment="Left" Margin="10,306,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn2_Click"/>
+        <RadioButton x:Name="rbtn3" Content="RadioButton" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn3_Click"/>
+        <DatePicker x:Name="dpckBegin" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckBegin_SelectedDateChanged"/>
+        <DatePicker x:Name="dpckEnd" HorizontalAlignment="Left" Margin="157,235,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckEnd_SelectedDateChanged"/>
         <Image x:Name="imgCar" HorizontalAlignment="Left" Height="220" Margin="537,10,0,0" VerticalAlignment="Top" Width="245"/>
         <TextBlock x:Name="txtCarDetails" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="220" Width="251"/>
         <Button x:Name="btnOrder" Content="Order" HorizontalAlignment="Left" Margin="648,301,0,0" VerticalAlignment="Top" Width="106" Height="40" Click="btnOrder_Click"/>
+        <Label x:Name="lblCost" Content="Cost:" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPrice" Content="" HorizontalAlignment="Left" Margin="51,346,0,0" VerticalAlignment="Top" Width="98"/>
     </Grid>
 </Window>
