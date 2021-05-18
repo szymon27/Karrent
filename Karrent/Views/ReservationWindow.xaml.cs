@@ -122,11 +122,23 @@ namespace Karrent.Views
 
         private void dpckBegin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dpckBegin.SelectedDate > dpckEnd.SelectedDate)
+            {
+                ErrorBox.Show("data początku > data końca");
+                lblPrice.Content = 0;
+                return;
+            }
             lblPrice.Content = GetPrice().ToString("F2");
         }
 
         private void dpckEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dpckBegin.SelectedDate > dpckEnd.SelectedDate)
+            {
+                ErrorBox.Show("data początku > data końca");
+                lblPrice.Content = 0;
+                return;
+            }
             lblPrice.Content = GetPrice().ToString("F2");
         }
 
