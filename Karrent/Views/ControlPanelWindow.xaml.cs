@@ -53,5 +53,35 @@ namespace Karrent.Views
         {
 
         }
+
+        private void btnEditCarDone_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnImgE_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditModelDone_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddModelDone_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddUserDone_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDesactivateCar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
