@@ -59,6 +59,7 @@ namespace Karrent.Views
                 rbtn2.Content = securityPackages.ElementAt(1);
                 rbtn3.Content = securityPackages.ElementAt(2);
             }
+            lblPrice.Content = GetPrice().ToString("F2");
         }
 
         private decimal GetPrice()
