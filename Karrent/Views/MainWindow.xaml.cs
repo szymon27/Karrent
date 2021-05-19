@@ -23,6 +23,10 @@ namespace Karrent.Views
     public partial class MainWindow : Window
     {
         List<Car> cars = new List<Car>();
+        List<string> Models = new List<string>();
+        List<string> Brands = new List<string>();
+        List<string> Bodies = new List<string>();
+        List<string> EngineTypes = new List<string>();
         string[] sortingOptions = new string[] { "Default", "A-Z brand", "Z-A brand", "A-Z model", "Z-A model", "Price low-high", "Price high-low" };
         bool isSetUp = false;
         public MainWindow()
@@ -41,22 +45,22 @@ namespace Karrent.Views
         }
         private void FilterSetUp()
         {
-            List<string> Brands = DBManager.GetInstance().GetCars().Select(c => c.CarDetails.Brand).Distinct().ToList();
+            Brands = cars.Select(c => c.CarDetails.Brand).Distinct().ToList();
             Brands.Insert(0, "Brand");
             cmbFilterBrand.ItemsSource = Brands;
             cmbFilterBrand.SelectedIndex = 0;
 
-            List<string> Models = DBManager.GetInstance().GetCars().Select(c => c.CarDetails.Model).Distinct().ToList();
+            Models = cars.Select(c => c.CarDetails.Model).Distinct().ToList();
             Models.Insert(0, "Model");
             cmbFilterModel.ItemsSource = Models;
             cmbFilterModel.SelectedIndex = 0;
 
-            List<string> Bodies = DBManager.GetInstance().GetCars().Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
+            Bodies = cars.Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
             Bodies.Insert(0, "Body");
             cmbFilterBodyType.ItemsSource = Bodies;
             cmbFilterBodyType.SelectedIndex = 0;
 
-            List<string> EngineTypes = DBManager.GetInstance().GetCars().Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
+            EngineTypes = cars.Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
             EngineTypes.Insert(0, "EngineType");
             cmbFilterEngineType.ItemsSource = EngineTypes;
             cmbFilterEngineType.SelectedIndex = 0;
@@ -130,20 +134,21 @@ namespace Karrent.Views
         private void Filter()
         {
             if (!isSetUp) return;
-            if(cmbFilterBrand.SelectedIndex > 0)
+            
+            if (cmbFilterBrand.SelectedIndex > 0)
             {
                 cars = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).ToList();
                 listView.ItemsSource = cars;
 
-                List<string> Models = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
+                Models = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
                 Models.Insert(0, "Model");
                 cmbFilterModel.ItemsSource = Models;
 
-                List<string> Bodies = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
+                Bodies = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
                 Bodies.Insert(0, "Body");
                 cmbFilterBodyType.ItemsSource = Bodies;
 
-                List<string> EngineTypes = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
+                EngineTypes = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
                 EngineTypes.Insert(0, "EngineType");
                 cmbFilterEngineType.ItemsSource = EngineTypes;
             }
@@ -152,15 +157,15 @@ namespace Karrent.Views
                 cars = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).ToList();
                 listView.ItemsSource = cars;
 
-                List<string> Brands = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
+                Brands = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
                 Brands.Insert(0, "Brand");
                 cmbFilterBrand.ItemsSource = Brands;
 
-                List<string> Bodies = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
+                Bodies = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
                 Bodies.Insert(0, "Body");
                 cmbFilterBodyType.ItemsSource = Bodies;
 
-                List<string> EngineTypes = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
+                EngineTypes = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
                 EngineTypes.Insert(0, "EngineType");
                 cmbFilterEngineType.ItemsSource = EngineTypes;
             }
@@ -169,15 +174,15 @@ namespace Karrent.Views
                 cars = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).ToList();
                 listView.ItemsSource = cars;
 
-                List<string> Brands = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
+                Brands = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
                 Brands.Insert(0, "Brand");
                 cmbFilterBrand.ItemsSource = Brands;
 
-                List<string> Models = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
+                Models = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
                 Models.Insert(0, "Model");
                 cmbFilterModel.ItemsSource = Models;
 
-                List<string> EngineTypes = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
+                EngineTypes = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).Select(c => c.CarDetails.EngineType.ToString("G")).Distinct().ToList();
                 EngineTypes.Insert(0, "EngineType");
                 cmbFilterEngineType.ItemsSource = EngineTypes;
             }
@@ -186,19 +191,20 @@ namespace Karrent.Views
                 cars = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).ToList();
                 listView.ItemsSource = cars;
 
-                List<string> Brands = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
+                Brands = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.Brand).Distinct().ToList();
                 Brands.Insert(0, "Brand");
                 cmbFilterBrand.ItemsSource = Brands;
 
-                List<string> Models = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
+                Models = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
                 Models.Insert(0, "Model");
                 cmbFilterModel.ItemsSource = Models;
 
-                List<string> Bodies = DBManager.GetInstance().GetCars().Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
+                Bodies = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).Select(c => c.CarDetails.BodyType.ToString("G")).Distinct().ToList();
                 Bodies.Insert(0, "Body");
                 cmbFilterBodyType.ItemsSource = Bodies;
             }
         }
+        
         private void cmbFilterBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
@@ -222,6 +228,7 @@ namespace Karrent.Views
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             cars = DBManager.GetInstance().GetActiveCars();
+            Filter();
             listView.ItemsSource = cars;
         }
         private void btnRemoveFilters_Click(object sender, RoutedEventArgs e)
