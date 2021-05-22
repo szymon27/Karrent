@@ -124,11 +124,11 @@ namespace Karrent
             }
         }
 
-        public bool AddUser(string username, string password, string name, string surname, string birthDate)
+        public bool AddUser(string username, string password, string name, string surname, string birthDate, UserTypes userType = UserTypes.Customer)
         {
             try
             {
-                MySqlCommand mySqlCommand = new MySqlCommand($"call addUser(\"{username}\", \"{password}\", \"{name}\",\"{surname}\",\'{birthDate}\');", _instance.mySqlConnection);
+                MySqlCommand mySqlCommand = new MySqlCommand($"call addUser( {(int)userType}, \"{username}\", \"{password}\", \"{name}\",\"{surname}\",\'{birthDate}\');", _instance.mySqlConnection);
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 bool result = false;
                 while (mySqlDataReader.Read())
@@ -234,6 +234,71 @@ namespace Karrent
                 string dateEnd = reservationPeriod.End.GetValueOrDefault().ToString("yyyy-MM-dd");
                 //.ToString(CultureInfo.GetCultureInfo("en-GB"))
                 MySqlCommand mySqlCommand = new MySqlCommand($"call addReservation({userId}, {carId}, {securityPackadeId}, \'{dateBegin}\', \'{dateEnd}\', {price.ToString(CultureInfo.GetCultureInfo("en-GB"))});", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<User> GetUsers()
+        {
+            List<User> list = new List<User>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getUsers();", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    int id = mySqlDataReader.GetInt32(0);
+                    UserTypes userType = (UserTypes)mySqlDataReader.GetInt32(1);
+                    string username = mySqlDataReader.GetString(2);
+                    string password = mySqlDataReader.GetString(3);
+                    string name = mySqlDataReader.GetString(4);
+                    string surname = mySqlDataReader.GetString(5);
+                    DateTime birthDate = mySqlDataReader.GetDateTime(6);
+                    bool isActive = mySqlDataReader.GetBoolean(7);
+                    DateTime creationDate = mySqlDataReader.GetDateTime(8);
+                    list.Add(new User(id, userType, username, password, name, surname, birthDate, isActive, creationDate));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public bool UpdateUser(int id, UserTypes userType, string username, string password, string name, string surname, string birthDate, bool isActive)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call updateUser({id}, {(int)userType}, \"{username}\", \"{password}\", \"{name}\",\"{surname}\",\'{birthDate}\', {isActive});", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool AddModel(BodyTypes bodyType, EngineTypes engineType, string brand, string model, int horsePower, decimal price, string pathToImage)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call addModel({(int)bodyType}, {(int)engineType}, \"{brand}\",\"{model}\", {horsePower}, {price.ToString(CultureInfo.GetCultureInfo("en-GB"))}, \"{pathToImage.Replace("\\", "/")}\");", _instance.mySqlConnection);
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 bool result = false;
                 while (mySqlDataReader.Read())

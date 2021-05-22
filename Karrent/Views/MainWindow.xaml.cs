@@ -112,7 +112,8 @@ namespace Karrent.Views
         }
         private void btnControlPanel_Click(object sender, RoutedEventArgs e)
         {
-
+            ControlPanelWindow controlPanelWindow = new ControlPanelWindow();
+            controlPanelWindow.ShowDialog();
         }
 
         private void cmbSorting_SelectionChanged(object sender, SelectionChangedEventArgs e)
