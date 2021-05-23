@@ -201,7 +201,7 @@
                     <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid x:Name="gridEditCar" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" ></ColumnDefinition>
@@ -229,7 +229,44 @@
                     <Button x:Name="btnAddCarDoneE" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Click="btnAddCarDoneE_Click"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
+            <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+                <Grid x:Name="gridRaports" Margin="5,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="220"></ColumnDefinition>
+                        <ColumnDefinition Width="113"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblRaportName1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"></Label>
+                    <DatePicker x:Name="dateBegin" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"></DatePicker>
+                    <DatePicker x:Name="dateEnd" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"></DatePicker>
+                    <Button x:Name="btnGenerate1" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0"></Button>
+
+                    <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"></CheckBox>
+                    <CheckBox x:Name="chbxReservationsTime" Content="Reservations" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="87,0,0,0"/>
+
+                    <Label x:Name="lblRaportName2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
+                    <TextBox x:Name="txtPlateNumberR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2"></TextBox>
+                    <Button x:Name="btnGenerate2" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2"></Button>
+
+                    <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+
+                    <Label x:Name="lblRaportName3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
+                    <TextBox x:Name="txtUsernameR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4"></TextBox>
+                    <Button x:Name="btnGenerate3" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4"></Button>
+                   
+                    <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+
+                    <TextBlock x:Name="tbxRaport" Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>
