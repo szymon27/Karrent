@@ -24,14 +24,24 @@ namespace Karrent.Views
     {
         private User User = null;
         private string pathToImgModel = String.Empty;
+        private CarDetails Model = null;
+        private string pathToImgModelE = String.Empty;
+
         public ControlPanelWindow()
         {
             InitializeComponent();
-            HideAllStackPanels();
-            foreach (string bodyType in Enum.GetNames(typeof(BodyTypes)))
+            foreach (string bodyType in Enum.GetNames(typeof(BodyTypes))) 
+            {
                 cbxBodyTypes.Items.Add(bodyType);
+                cbxBodyTypesE.Items.Add(bodyType);
+            }
             foreach (string engineType in Enum.GetNames(typeof(EngineTypes)))
+            {
                 cbxEngineTypes.Items.Add(engineType);
+                cbxEngineTypesE.Items.Add(engineType);
+            }
+
+            HideAllStackPanels();
         }
 
         private void HideAllStackPanels()
@@ -47,6 +57,7 @@ namespace Karrent.Views
             AddUserClear();
             EditUserClear();
             AddModelClear();
+            EditModelClear();
         }
 
         private void AddUserClear()
@@ -76,6 +87,7 @@ namespace Karrent.Views
             rbtnManagerE.IsChecked = false;
             rbtnActiveE.IsChecked = false;
             rbtnInActiveE.IsChecked = false;
+            lstUsers.ItemsSource = DBManager.GetInstance().GetUsers();
         }
 
         private void AddModelClear()
@@ -91,6 +103,20 @@ namespace Karrent.Views
             lblImgModelPath.Content = String.Empty;
         }
 
+        private void EditModelClear()
+        {
+            pathToImgModelE = String.Empty;
+            txtBrandE.Text = String.Empty;
+            txtModelE.Text = String.Empty;
+            txtHorsePowerE.Text = String.Empty;
+            txtPriceE.Text = String.Empty;
+            cbxBodyTypesE.SelectedIndex = -1;
+            cbxEngineTypesE.SelectedIndex = -1;
+            imgModelE.Source = null;
+            lblImgModelPathE.Content = String.Empty;
+            lstModels.ItemsSource = DBManager.GetInstance().GetModels();
+        }
+
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
@@ -101,7 +127,6 @@ namespace Karrent.Views
         {
             HideAllStackPanels();
             stackPanelEditUser.Visibility = Visibility.Visible;
-            lstUsers.ItemsSource = DBManager.GetInstance().GetUsers();
         }
 
         private void btnAddModel_Click(object sender, RoutedEventArgs e)
@@ -373,6 +398,109 @@ namespace Karrent.Views
                 lblImgModelPath.Content = pathToImgModel;
                 imgModel.Source = null;
             }
+        }
+
+        private void btnRemoveImageE_Click(object sender, RoutedEventArgs e)
+        {
+            if (imgModelE.Source == null)
+                return;
+            else
+            {
+                pathToImgModelE = String.Empty;
+                lblImgModelPathE.Content = pathToImgModelE;
+                imgModelE.Source = null;
+            }
+        }
+
+        private void btnAddImageE_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp) | *.jpg; *.jpeg; *.png; *bmp";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                pathToImgModelE = openFileDialog.FileName;
+                lblImgModelPathE.Content = pathToImgModelE;
+                imgModelE.Source = new BitmapImage(new Uri(pathToImgModelE));
+            }
+        }
+
+        private void lstModels_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = lstModels.SelectedIndex;
+            if (index <= -1 || index >= lstModels.Items.Count)
+            {
+                EditModelClear();
+                return;
+            }
+            this.Model = (CarDetails)lstModels.Items.GetItemAt(index);
+            txtBrandE.Text = this.Model.Brand;
+            txtModelE.Text = this.Model.Model;
+            txtHorsePowerE.Text = this.Model.HorsePower.ToString();
+            txtPriceE.Text = this.Model.Price.ToString();
+            cbxBodyTypesE.SelectedIndex = ((int)this.Model.BodyType) - 1;
+            cbxEngineTypesE.SelectedIndex = ((int)this.Model.EngineType) - 1;
+            imgModelE.Source = this.Model.Photo;
+        }
+
+        private void btnEditModelDone_Click(object sender, RoutedEventArgs e)
+        {
+            string brand = txtBrandE.Text;
+            string model = txtModelE.Text;
+            int horsePower;
+            decimal price;
+
+            if (String.IsNullOrEmpty(brand) || brand.Length < 2)
+            {
+                ErrorBox.Show("Wrong Brand");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(model))
+            {
+                ErrorBox.Show("Wrong model");
+                return;
+            }
+
+            if (!(Int32.TryParse(txtHorsePowerE.Text, out horsePower) && horsePower > 0))
+            {
+                ErrorBox.Show("Wrong horse power");
+                return;
+            }
+
+            if (!(Decimal.TryParse(txtPriceE.Text, out price) && price > 0))
+            {
+                ErrorBox.Show("Wrong price");
+                return;
+            }
+
+            //if (String.IsNullOrEmpty(this.pathToImgModelE))
+            if(imgModelE.Source == null)
+            {
+                ErrorBox.Show("Choose image");
+                return;
+            }
+
+            int bodyTypeIndex = cbxBodyTypesE.SelectedIndex;
+            if (bodyTypeIndex <= -1 || bodyTypeIndex >= cbxBodyTypesE.Items.Count)
+            {
+                ErrorBox.Show("Choose body type");
+                return;
+            }
+
+            int engineTypeIndex = cbxEngineTypesE.SelectedIndex;
+            if (engineTypeIndex <= -1 || engineTypeIndex >= cbxEngineTypesE.Items.Count)
+            {
+                ErrorBox.Show("Choose engine type");
+                return;
+            }
+
+            if (DBManager.GetInstance().UpdateModel(this.Model.Id, (BodyTypes)(bodyTypeIndex + 1), (EngineTypes)(engineTypeIndex + 1), brand, model, horsePower, price, pathToImgModelE))
+            {
+                InfoBox.Show("Changes saved");
+                EditModelClear();
+            }
+            else
+                ErrorBox.Show("Changes not saved");
         }
     }
 }

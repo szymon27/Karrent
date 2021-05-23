@@ -311,5 +311,56 @@ namespace Karrent
                 return false;
             }
         }
+
+        public List<CarDetails> GetModels()
+        {
+            List<CarDetails> list = new List<CarDetails>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getCarDetails();", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    int id = mySqlDataReader.GetInt32(0);
+                    BodyTypes bodyType = (BodyTypes)mySqlDataReader.GetInt32(1);
+                    EngineTypes engineType = (EngineTypes)mySqlDataReader.GetInt32(2);
+                    string brand = mySqlDataReader.GetString(3);
+                    string model = mySqlDataReader.GetString(4);
+                    int horsePower = mySqlDataReader.GetInt32(5);
+                    decimal price = mySqlDataReader.GetDecimal(6);
+                    byte[] photo = (byte[])mySqlDataReader[7];
+                    list.Add(new CarDetails(id, bodyType, engineType, brand, model, horsePower, price, photo.ToBitmapImage()));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public bool UpdateModel(int id, BodyTypes bodyType, EngineTypes engineType, string brand, string model, int horsePower, decimal price, string path = null)
+        {
+            try
+            {
+                string query;
+                if (!String.IsNullOrEmpty(path))
+                    query = $"call updateModel({id}, {(int)bodyType}, {(int)engineType}, \"{brand}\",\"{model}\", {horsePower}, {price.ToString(CultureInfo.GetCultureInfo("en-GB"))}, \"{path.Replace("\\", "/")}\");";
+                else
+                    query = $"call updateModelWithoutPhoto({id}, {(int)bodyType}, {(int)engineType}, \"{brand}\",\"{model}\", {horsePower}, {price.ToString(CultureInfo.GetCultureInfo("en-GB"))});";
+                MySqlCommand mySqlCommand = new MySqlCommand(query, _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
