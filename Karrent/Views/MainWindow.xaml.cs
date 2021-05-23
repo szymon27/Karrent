@@ -29,6 +29,7 @@ namespace Karrent.Views
         List<string> EngineTypes = new List<string>();
         string[] sortingOptions = new string[] { "Default", "A-Z brand", "Z-A brand", "A-Z model", "Z-A model", "Price low-high", "Price high-low" };
         bool isSetUp = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,11 +39,13 @@ namespace Karrent.Views
             SortSetUp();
             FilterSetUp();
         }
+
         private void SortSetUp()
         {
             cmbSorting.ItemsSource = sortingOptions;
             cmbSorting.SelectedIndex = 0;
         }
+
         private void FilterSetUp()
         {
             Brands = cars.Select(c => c.CarDetails.Brand).Distinct().ToList();
@@ -67,18 +70,11 @@ namespace Karrent.Views
 
             isSetUp = true;
         }
-        private void btnSignUp_Click(object sender, RoutedEventArgs e)
-        {
-            SignUpWindow signUpWindow = new SignUpWindow();
-            signUpWindow.ShowDialog();
-        }
 
         public void setButtonsAfterLogin()
         {
             if (CurrentUser.GetInstance().User.UserType != UserTypes.Guest)
             {
-                if (btnSignUp.Visibility == Visibility.Visible)
-                    btnSignUp.Visibility = Visibility.Hidden;
                 if (btnSignIn.Content.ToString() == "SIGN IN")
                     btnSignIn.Content = "LOGOUT";
                 txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
@@ -100,8 +96,6 @@ namespace Karrent.Views
             }
             else
             {
-                if (btnSignUp.Visibility == Visibility.Hidden)
-                    btnSignUp.Visibility = Visibility.Visible;
                 if (btnSignIn.Content.ToString() == "LOGOUT")
                     btnSignIn.Content = "SIGN IN";
                 if (btnControlPanel.Visibility == Visibility.Visible)

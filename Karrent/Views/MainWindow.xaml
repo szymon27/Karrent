@@ -20,7 +20,6 @@
         <Image Source="..\Resources\logo.png" Grid.Column="0" HorizontalAlignment="Left" Height="50" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Top" Width="250"/>
         <StackPanel x:Name="stackPanelButtons" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="btnControlPanel" Content="CONTROL PANEL" Width="100" Height="30" Margin="0, 0, 10, 0" Visibility="Hidden" Click="btnControlPanel_Click"/>
-            <Button x:Name="btnSignUp" Content="SIGN UP" Width="100" Height="25" Margin="0, 0, 10, 0" Click="btnSignUp_Click"/>
             <Button x:Name="btnSignIn" Content="SIGN IN" Width="100" Height="25" Margin="0, 0, 10, 0" Click="btnSignIn_Click"/>
             <Label x:Name="txtCurrentUser" Width="100" Height="30" Margin="0, 0, 10, 0"/>
         </StackPanel>
