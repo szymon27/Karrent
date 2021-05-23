@@ -141,7 +141,7 @@
                     <Label x:Name="lblImgModelPath" Content="" Grid.Column="2" Grid.Row="6" Margin="5,5,5,5"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditModel" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <StackPanel x:Name="stackPanelEditModel" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
                 <Grid x:Name="gridEditModel" Margin="5,5,0,5" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="170" ></ColumnDefinition>
@@ -178,7 +178,28 @@
                     <Label x:Name="lblImgModelPathE" Content="" Grid.Column="2" Grid.Row="7" Margin="5,5,5,5"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelAddCar" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
+            <StackPanel x:Name="stackPanelAddCar" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+                <Grid x:Name="gridAddCar" Margin="5,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" ></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="lstCarDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5"/>
+                    <Label x:Name="lblPlateNumber" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <TextBox x:Name="txtPlateNumber" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40"/>
+                    <Label x:Name="lblMileage" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <TextBox x:Name="txtMileage" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40"/>
+                    <Label x:Name="lblInspectionDate" Content="Inspection date" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="115" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <DatePicker x:Name="dateInspectionDate" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40"/>
+                </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
             </StackPanel>

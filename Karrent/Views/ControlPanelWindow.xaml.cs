@@ -58,6 +58,7 @@ namespace Karrent.Views
             EditUserClear();
             AddModelClear();
             EditModelClear();
+            AddCarClear();
         }
 
         private void AddUserClear()
@@ -115,6 +116,15 @@ namespace Karrent.Views
             imgModelE.Source = null;
             lblImgModelPathE.Content = String.Empty;
             lstModels.ItemsSource = DBManager.GetInstance().GetModels();
+        }
+
+        private void AddCarClear()
+        {
+            txtPlateNumber.Text = String.Empty;
+            txtMileage.Text = String.Empty;
+            dateInspectionDate.SelectedDate = null;
+            lstCarDetails.SelectedIndex = -1;
+            lstCarDetails.ItemsSource = DBManager.GetInstance().GetModels();
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -501,6 +511,46 @@ namespace Karrent.Views
             }
             else
                 ErrorBox.Show("Changes not saved");
+        }
+
+        private void btnAddCarDone_Click(object sender, RoutedEventArgs e)
+        {
+            int index = lstCarDetails.SelectedIndex;
+            if(index <= -1 || index >= lstCarDetails.Items.Count)
+            {
+                ErrorBox.Show("Choose model");
+                return;
+            }
+
+            string plateNumber = txtPlateNumber.Text;
+            if(plateNumber.Length != 8)
+            {
+                ErrorBox.Show("Wrong plate number");
+                return;
+            }
+
+            double mileage;
+            if (!(Double.TryParse(txtMileage.Text, out mileage) && mileage > 0))
+            {
+                ErrorBox.Show("Wrong mileage");
+                return;
+            }
+
+            DateTime? inspectionDate = dateInspectionDate.SelectedDate;
+            if(inspectionDate == null)
+            {
+                ErrorBox.Show("Choose inspection date");
+                return;
+            }
+
+            if (DBManager.GetInstance().AddCar(((CarDetails)lstCarDetails.Items.GetItemAt(index)).Id, plateNumber,
+                mileage, inspectionDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
+            {
+                InfoBox.Show($"Created car");
+                AddCarClear();
+            }
+            else
+                ErrorBox.Show("Couldn't create car");
         }
     }
 }
