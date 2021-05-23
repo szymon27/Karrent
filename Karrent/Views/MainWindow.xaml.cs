@@ -243,6 +243,10 @@ namespace Karrent.Views
             reservationWindow.ShowDialog();
         }
 
-        
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileWindow profileWindow = new ProfileWindow();
+            profileWindow.ShowDialog();
+        }
     }
 }

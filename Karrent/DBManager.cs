@@ -399,17 +399,64 @@ namespace Karrent
             }
         }
 
-        public bool ChangePassword(string newpass)
+        public bool ChangePassword(string password)
         {
             try
             {
-                //MySqlCommand mySqlCommand = new MySqlCommand($"call changePassword"(), )
+                MySqlCommand mySqlCommand = new MySqlCommand($"call changePassword({CurrentUser.GetInstance().User.Id}, \"{password}\");", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
                 return result;
             }
             catch
             {
                 return false;
+            }
+        }
+
+        public bool ChangePersonalDetails(string name, string surname, string birthDate)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call changePersonalDetails({CurrentUser.GetInstance().User.Id}, \"{name}\", \"{surname}\", \'{birthDate}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<(string, string, DateTime, DateTime, decimal)> GetReservations()
+        {
+            List <(string, string, DateTime, DateTime, decimal)> list = new List<(string, string, DateTime, DateTime, decimal)>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call getReservationsByUserId({CurrentUser.GetInstance().User.Id});", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    string brand = mySqlDataReader.GetString(0);
+                    string model = mySqlDataReader.GetString(1);
+                    DateTime begin = mySqlDataReader.GetDateTime(2);
+                    DateTime end = mySqlDataReader.GetDateTime(3);
+                    Decimal price = mySqlDataReader.GetDecimal(4);
+                    list.Add((brand, model, begin, end, price));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
             }
         }
     }

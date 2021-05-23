@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <Image Source="..\Resources\logo.png"  HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
             <Button x:Name="btnSignIn" Content="SIGN IN" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnSignIn_Click" Grid.Column="3" Grid.Row="0"/>
-            <Button x:Name="btnProfile" Content="PROFILE" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Grid.Column="2" Grid.Row="0"/>
+            <Button x:Name="btnProfile" Content="PROFILE" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Grid.Column="2" Grid.Row="0" Click="btnProfile_Click"/>
             <Button x:Name="btnControlPanel" Content="CONTROL PANEL" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Click="btnControlPanel_Click" Grid.Column="1" Grid.Row="0"/>
         </Grid>
         <Grid x:Name="SortFilter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">

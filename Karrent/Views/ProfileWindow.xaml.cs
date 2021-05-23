@@ -25,6 +25,11 @@ namespace Karrent.Views
             txtName.Text = CurrentUser.GetInstance().User.Name;
             txtSurname.Text = CurrentUser.GetInstance().User.Surname;
             dateBirthDate.SelectedDate = CurrentUser.GetInstance().User.BirthDate;
+            var rentedCarsList = DBManager.GetInstance().GetReservations();
+            lstRentedCars.Items.Clear();
+            foreach (var element in rentedCarsList)
+                lstRentedCars.Items.Add($"{element.Item1} {element.Item2} {element.Item3.ToString("yyyy-MM-dd")}" +
+                    $" {element.Item4.ToString("yyyy-MM-dd")} {element.Item5.ToString()}");
         }
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
@@ -62,11 +67,43 @@ namespace Karrent.Views
                 return;
             }
 
+            if (DBManager.GetInstance().ChangePassword(newpass))
+            {
+                InfoBox.Show("Password changed");
+                CurrentUser.GetInstance().User.Password = newpass;
+            }
+            else
+                ErrorBox.Show("Password not changed");
         }
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            string name = txtName.Text;
+            string surname = txtSurname.Text;
+            DateTime? birthDate = dateBirthDate.SelectedDate;
+            
+            if(string.IsNullOrEmpty(name) || name.Length < 2)
+            {
+                ErrorBox.Show("Wrong name");
+                return;
+            }
 
+            if (string.IsNullOrEmpty(surname) || surname.Length < 2)
+            {
+                ErrorBox.Show("Wrong surname");
+                return;
+            }
+
+            if(birthDate == null)
+            {
+                ErrorBox.Show("Choose birth date");
+                return;
+            }
+
+            if (DBManager.GetInstance().ChangePersonalDetails(name, surname, birthDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
+                InfoBox.Show("Personal details changed");
+            else
+                ErrorBox.Show("Personal details not changed");
         }
     }
 }
