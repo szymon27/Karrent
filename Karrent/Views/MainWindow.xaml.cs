@@ -77,7 +77,8 @@ namespace Karrent.Views
             {
                 if (btnSignIn.Content.ToString() == "SIGN IN")
                     btnSignIn.Content = "LOGOUT";
-                txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
+                btnProfile.Content = CurrentUser.GetInstance().User.Username;
+                btnProfile.Visibility = Visibility.Visible;
                 if (CurrentUser.GetInstance().User.UserType != UserTypes.Customer)
                 {
                     if (btnControlPanel.Visibility == Visibility.Hidden)
@@ -101,7 +102,8 @@ namespace Karrent.Views
                 if (btnControlPanel.Visibility == Visibility.Visible)
                     btnControlPanel.Visibility = Visibility.Hidden;
                 CurrentUser.GetInstance().SetUserAsGuest();
-                txtCurrentUser.Content = CurrentUser.GetInstance().User.Username;
+                btnProfile.Content = CurrentUser.GetInstance().User.Username;
+                btnProfile.Visibility = Visibility.Hidden;
             }
         }
         private void btnControlPanel_Click(object sender, RoutedEventArgs e)

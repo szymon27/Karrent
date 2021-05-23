@@ -398,5 +398,19 @@ namespace Karrent
                 return false;
             }
         }
+
+        public bool ChangePassword(string newpass)
+        {
+            try
+            {
+                //MySqlCommand mySqlCommand = new MySqlCommand($"call changePassword"(), )
+                bool result = false;
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
