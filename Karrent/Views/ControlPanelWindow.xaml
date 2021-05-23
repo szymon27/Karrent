@@ -178,7 +178,7 @@
                     <Label x:Name="lblImgModelPathE" Content="" Grid.Column="2" Grid.Row="7" Margin="5,5,5,5"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelAddCar" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <StackPanel x:Name="stackPanelAddCar" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
                 <Grid x:Name="gridAddCar" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" ></ColumnDefinition>
@@ -201,7 +201,33 @@
                     <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
+            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+                <Grid x:Name="gridEditCar" Margin="5,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" ></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="lstCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarsE_SelectionChanged"/>
+                    <ListBox x:Name="lstCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarDetailsE_SelectionChanged"/>
+                    <Label x:Name="lblPlateNumberE" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <TextBox x:Name="txtPlateNumberE" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40"/>
+                    <Label x:Name="lblMileageE" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <TextBox x:Name="txtMileageE" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40"/>
+                    <Label x:Name="lblInspectionDateE" Content="Inspection date" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="115" Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
+                    <DatePicker x:Name="dateInspectionDateE" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="rbtnCarActive" GroupName="carActive" Grid.Column="0" Grid.Row="5" Content="Active" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
+                    <RadioButton x:Name="rbtnCarInActive" GroupName="carActive" Grid.Column="1" Grid.Row="5" Content="Inactive" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
+                    <Button x:Name="btnAddCarDoneE" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Click="btnAddCarDoneE_Click"/>
+                </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
             </StackPanel>

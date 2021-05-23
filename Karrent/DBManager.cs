@@ -380,5 +380,23 @@ namespace Karrent
                 return false;
             }
         }
+
+        public bool EditCar(int id, int modelId, string plateNumber, double mileage, bool isActive, string inspectionDate)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call editCar({id}, {modelId}, \"{plateNumber}\", {mileage.ToString(CultureInfo.GetCultureInfo("en-GB"))}, {isActive}, \"{inspectionDate}\");", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                bool result = false;
+                while (mySqlDataReader.Read())
+                    result = mySqlDataReader.GetBoolean(0);
+                mySqlDataReader.Close();
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

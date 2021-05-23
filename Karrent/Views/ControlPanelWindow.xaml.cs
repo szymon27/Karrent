@@ -15,6 +15,7 @@ using Karrent.Enums;
 using Karrent.Objects;
 using Microsoft.Win32;
 
+
 namespace Karrent.Views
 {
     /// <summary>
@@ -26,6 +27,7 @@ namespace Karrent.Views
         private string pathToImgModel = String.Empty;
         private CarDetails Model = null;
         private string pathToImgModelE = String.Empty;
+        private Car Car = null;
 
         public ControlPanelWindow()
         {
@@ -54,11 +56,12 @@ namespace Karrent.Views
             stackPanelEditCar.Visibility = Visibility.Hidden;
             stackPanelRaports.Visibility = Visibility.Hidden;
 
-            AddUserClear();
-            EditUserClear();
-            AddModelClear();
-            EditModelClear();
-            AddCarClear();
+           //AddUserClear();
+           //EditUserClear();
+           //AddModelClear();
+           //EditModelClear();
+           //AddCarClear();
+           //EditCarClear();
         }
 
         private void AddUserClear()
@@ -127,40 +130,60 @@ namespace Karrent.Views
             lstCarDetails.ItemsSource = DBManager.GetInstance().GetModels();
         }
 
+        private void EditCarClear()
+        {
+            this.Car = null;
+            txtPlateNumberE.Text = String.Empty;
+            txtMileageE.Text = String.Empty;
+            dateInspectionDateE.SelectedDate = null;
+            lstCarsE.SelectedIndex = -1;
+            lstCarsE.ItemsSource = DBManager.GetInstance().GetCars();
+            lstCarDetailsE.SelectedIndex = -1;
+            lstCarDetailsE.ItemsSource = DBManager.GetInstance().GetModels();
+            rbtnCarActive.IsChecked = false;
+            rbtnCarInActive.IsChecked = false;
+        }
+
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelAddUser.Visibility = Visibility.Visible;
+            AddUserClear();
         }
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelEditUser.Visibility = Visibility.Visible;
+            EditUserClear();
         }
 
         private void btnAddModel_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelAddModel.Visibility = Visibility.Visible;
+            AddModelClear();
         }
 
         private void btnEditModel_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelEditModel.Visibility = Visibility.Visible;
+            EditModelClear();
         }
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelAddCar.Visibility = Visibility.Visible;
+            AddCarClear();
         }
 
         private void btnEditCar_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
             stackPanelEditCar.Visibility = Visibility.Visible;
+            EditCarClear();
         }
 
         private void btnRaports_Click(object sender, RoutedEventArgs e)
@@ -530,7 +553,7 @@ namespace Karrent.Views
             }
 
             double mileage;
-            if (!(Double.TryParse(txtMileage.Text, out mileage) && mileage > 0))
+            if (!(Double.TryParse(txtMileage.Text, out mileage) && mileage >= 0))
             {
                 ErrorBox.Show("Wrong mileage");
                 return;
@@ -551,6 +574,89 @@ namespace Karrent.Views
             }
             else
                 ErrorBox.Show("Couldn't create car");
+        }
+
+        private void lstCarDetailsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstCarDetailsE.SelectedIndex == -1)
+                return;
+            int carIndex = lstCarsE.SelectedIndex;
+            if(carIndex <= -1 || carIndex >= lstCarsE.Items.Count)
+            {
+                ErrorBox.Show("Chose car first");
+                lstCarDetailsE.SelectedIndex = -1;
+                return;
+            }
+        }
+
+        private void lstCarsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int carIndex = lstCarsE.SelectedIndex;
+            if (carIndex <= -1 || carIndex >= lstCarsE.Items.Count)
+                return;
+
+            Car = (Car)lstCarsE.Items.GetItemAt(carIndex);
+            var carDetailsList = (IEnumerable<CarDetails>)lstCarDetailsE.ItemsSource;
+            int index = -1;
+            for (int i = 0; i < carDetailsList.Count(); i++)
+                if(carDetailsList.ElementAt(i).Id == Car.CarDetails.Id)
+                {
+                    index = i;
+                    break;
+                }
+            lstCarDetailsE.SelectedIndex = index;
+            txtPlateNumberE.Text = Car.PlateNumber;
+            txtMileageE.Text = Car.Mileage.ToString();
+            if (Car.IsActive) rbtnCarActive.IsChecked = true;
+            else rbtnCarInActive.IsChecked = true;
+            dateInspectionDateE.SelectedDate = Car.InspectionDate;
+        }
+
+        private void btnAddCarDoneE_Click(object sender, RoutedEventArgs e)
+        {
+            if (Car == null)
+                return;
+
+            int modelIndex = lstCarDetailsE.SelectedIndex;
+            if(modelIndex <= -1 || modelIndex >= lstCarDetailsE.Items.Count)
+            {
+                ErrorBox.Show("Chose model first");
+                return;
+            }
+
+            string plateNumber = txtPlateNumberE.Text;
+            if (plateNumber.Length != 8)
+            {
+                ErrorBox.Show("Wrong plate number");
+                return;
+            }
+
+            double mileage;
+            if (!(Double.TryParse(txtMileageE.Text, out mileage) && mileage >= 0))
+            {
+                ErrorBox.Show("Wrong mileage");
+                return;
+            }
+
+            DateTime? inspectionDate = dateInspectionDateE.SelectedDate;
+            if (inspectionDate == null)
+            {
+                ErrorBox.Show("Choose inspection date");
+                return;
+            }
+
+            bool active;
+            if (rbtnCarActive.IsChecked == true) active = true;
+            else active = false;
+
+            if (DBManager.GetInstance().EditCar(Car.Id, ((CarDetails)lstCarDetailsE.Items.GetItemAt(modelIndex)).Id, plateNumber,
+                mileage, active, inspectionDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
+            {
+                InfoBox.Show($"Changes saved");
+                EditCarClear();
+            }
+            else
+                ErrorBox.Show("Changes not saved");
         }
     }
 }
