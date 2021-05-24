@@ -34,13 +34,13 @@ namespace Karrent.Objects
 
         public override string ToString()
         {
-            return $"Id:{this.Id} " +
-                $"Body type:{this.BodyType} " +
-                $"Engine type:{this.EngineType} " +
-                $"Brand:{this.Brand} " +
-                $"Model:{this.Model} " +
-                $"Horse power:{this.HorsePower} " +
-                $"Price:{this.Price} ";
+            return $"Id: {this.Id} " +
+                $"Body type: {this.BodyType} " +
+                $"Engine type: {this.EngineType} " +
+                $"Brand: {this.Brand} " +
+                $"Model: {this.Model} " +
+                $"Horse power: {this.HorsePower} " +
+                $"Price: {this.Price} ";
         }
     }
 }

@@ -459,5 +459,105 @@ namespace Karrent
                 return list;
             }
         }
+
+        public List<(string, DateTime, DateTime, string, string, string)> GetNewReservations(string dateBegin, string dateEnd)
+        {
+            List<(string, DateTime, DateTime, string, string, string)> list = new List<(string, DateTime, DateTime, string, string, string)>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call raportNewReservations(\'{dateBegin}\', \'{dateEnd}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    string login = mySqlDataReader.GetString(0);
+                    DateTime begin = mySqlDataReader.GetDateTime(1);
+                    DateTime end = mySqlDataReader.GetDateTime(2);
+                    string plateNumber = mySqlDataReader.GetString(3);
+                    string brand = mySqlDataReader.GetString(4);
+                    string model = mySqlDataReader.GetString(5);
+                    list.Add((login, begin, end, plateNumber, brand, model));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public List<(string, string, string, DateTime)>GetNewUsers(string dateBegin, string dateEnd)
+        {
+            List<(string, string, string, DateTime)> list = new List<(string, string, string, DateTime)>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call raportNewUsers(\'{dateBegin}\', \'{dateEnd}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    string login = mySqlDataReader.GetString(0);
+                    string name = mySqlDataReader.GetString(1);
+                    string surname = mySqlDataReader.GetString(2);
+                    DateTime birthDate = mySqlDataReader.GetDateTime(3);
+                    list.Add((login, name, surname, birthDate));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public List<(DateTime, DateTime, decimal)> GetReservationsByPlateNumber(string plateNumber)
+        {
+            List<(DateTime, DateTime, decimal)> list = new List<(DateTime, DateTime, decimal)>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call raportReservationsByPlateNumber(\'{plateNumber}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    
+                    DateTime dateBegin = mySqlDataReader.GetDateTime(0);
+                    DateTime dateEnd = mySqlDataReader.GetDateTime(1);
+                    decimal price = mySqlDataReader.GetDecimal(2);
+                    list.Add((dateBegin, dateEnd, price));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        public List<(DateTime, DateTime, decimal, string, string)> GetReservationsByLogin(string login)
+        {
+            List<(DateTime, DateTime, decimal, string, string)> list = new List<(DateTime, DateTime, decimal, string, string)>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"call raportUserReservationsByLogin(\'{login}\');", _instance.mySqlConnection);
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+
+                    DateTime dateBegin = mySqlDataReader.GetDateTime(0);
+                    DateTime dateEnd = mySqlDataReader.GetDateTime(1);
+                    decimal price = mySqlDataReader.GetDecimal(2);
+                    string brand = mySqlDataReader.GetString(3);
+                    string model = mySqlDataReader.GetString(4);
+                    list.Add((dateBegin, dateEnd, price, brand, model));
+                }
+                mySqlDataReader.Close();
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
     }
 }

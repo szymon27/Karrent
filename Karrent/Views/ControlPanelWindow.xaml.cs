@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Karrent.Enums;
 using Karrent.Objects;
 using Microsoft.Win32;
+using System.IO;
 
 
 namespace Karrent.Views
@@ -144,6 +145,23 @@ namespace Karrent.Views
             rbtnCarInActive.IsChecked = false;
         }
 
+        private void RaportsClear()
+        {
+            this.Car = null;
+            this.User = null;
+            dgridCarsR.SelectedIndex = -1;
+            dgridCarsR.ItemsSource = DBManager.GetInstance().GetCars();
+            dgridUsersR.SelectedIndex = -1;
+            dgridUsersR.ItemsSource = DBManager.GetInstance().GetUsers();
+            chbxNewUsers.IsChecked = false;
+            chbxReservationsCar.IsChecked = false;
+            chbxReservationsTime.IsChecked = false;
+            chbxReservationsUser.IsChecked = false;
+            tbxRaport.Text = String.Empty;
+            dateBeginR.SelectedDate = null;
+            dateEndR.SelectedDate = null;
+        }
+
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             HideAllStackPanels();
@@ -190,6 +208,7 @@ namespace Karrent.Views
         {
             HideAllStackPanels();
             stackPanelRaports.Visibility = Visibility.Visible;
+            RaportsClear();
         }
 
         private void btnAddUserDone_Click(object sender, RoutedEventArgs e)
@@ -658,5 +677,160 @@ namespace Karrent.Views
             else
                 ErrorBox.Show("Changes not saved");
         }
+
+        private void btnGenerateTimePeriod_Click(object sender, RoutedEventArgs e)
+        {
+            tbxRaport.Text = String.Empty;
+            DateTime? begin = dateBeginR.SelectedDate;
+            DateTime? end = dateEndR.SelectedDate;
+            if(begin == null || end == null)
+            {
+                ErrorBox.Show("Choose both dates");
+                return;
+            }
+
+            if(dateBeginR.SelectedDate > dateEndR.SelectedDate)
+            {
+                ErrorBox.Show("Begin date > end date");
+                return;
+            }
+
+            if(chbxNewUsers.IsChecked == false && chbxReservationsTime.IsChecked == false)
+            {
+                ErrorBox.Show("Raport type not selected");
+                return;
+            }
+            string toTbx = "";
+            if((bool)chbxNewUsers.IsChecked)
+            {
+                var list = DBManager.GetInstance().GetNewUsers(begin.GetValueOrDefault().ToString("yyyy-MM-dd"), end.GetValueOrDefault().ToString("yyyy-MM-dd"));
+                toTbx = $"New users ({begin.GetValueOrDefault().ToString("dd-MM-yyyy")} - {end.GetValueOrDefault().ToString("dd-MM-yyyy")})\n";
+                if (list.Count > 0)
+                {
+                    foreach (var element in list)
+                    {
+                        toTbx += element.Item1 + "\t" + element.Item2 + " " + element.Item3 + "" + "\t" + element.Item4.ToString("dd-MM-yyyy") + "\n";
+                    }
+                    toTbx += $"Count: {list.Count}";
+                }
+                else
+                toTbx += "No new useres\n";
+                tbxRaport.Text = toTbx;
+            }
+            if (chbxNewUsers.IsChecked == true && chbxReservationsTime.IsChecked == true)
+            {
+                toTbx += "\n --------------------------- \n";
+            }
+            if ((bool)chbxReservationsTime.IsChecked)
+            {
+                var list = DBManager.GetInstance().GetNewReservations(begin.GetValueOrDefault().ToString("yyyy-MM-dd"), end.GetValueOrDefault().ToString("yyyy-MM-dd"));
+                toTbx = $"New reservations ({begin.GetValueOrDefault().ToString("dd-MM-yyyy")} - {end.GetValueOrDefault().ToString("dd-MM-yyyy")})\n";
+                if (list.Count > 0)
+                {
+                    foreach (var element in list)
+                    {
+                        int days = (element.Item3 - element.Item2).Days + 1;
+                        toTbx += element.Item1 + "\t" + days.ToString() + " " + element.Item4 + "" + " " + element.Item5 + " " + element.Item6 + "\n";
+                    }
+                    toTbx += $"Count: {list.Count}";
+                }
+                else             
+                    toTbx += "No new reservations \n";
+                tbxRaport.Text = toTbx;
+            }
+        }
+
+        private void btnGenerateAboutCar_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgridCarsR.SelectedIndex<=-1 && dgridCarsR.SelectedIndex>= dgridCarsR.Items.Count)
+            {
+                ErrorBox.Show("Chose car");
+                return;
+            }
+            if(chbxReservationsCar.IsChecked == false)
+            {
+                ErrorBox.Show("Raport type not selected");
+                return;
+            }
+            string toTbx = "";
+            if(chbxReservationsCar.IsChecked==true)
+            {
+                Car = (Car)dgridCarsR.SelectedItem;
+                toTbx += $"{Car.PlateNumber} {Car.CarDetails.Brand} {Car.CarDetails.Model} all reservations\n";
+                var list = DBManager.GetInstance().GetReservationsByPlateNumber(Car.PlateNumber);
+                if (list.Count > 0)
+                {
+                    foreach (var element in list)
+                        toTbx += element.Item1.ToString("dd-MM-yyy") + " - " + element.Item2.ToString("dd-MM-yyyy") + " cost: " + element.Item3.ToString("F2") + "\n";
+                    toTbx += $"Count: {list.Count}";
+                }
+                else
+                    toTbx += "No reservations yet.";
+                tbxRaport.Text = toTbx;
+            }
+            Car = null;
+        }
+
+        private void btnGenerateAboutUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgridUsersR.SelectedIndex <= -1 && dgridUsersR.SelectedIndex >= dgridUsersR.Items.Count)
+            {
+                ErrorBox.Show("Chose user");
+                return;
+            }
+            if (chbxReservationsUser.IsChecked == false)
+            {
+                ErrorBox.Show("Raport type not selected");
+                return;
+            }
+            string toTbx = "";
+            if (chbxReservationsUser.IsChecked == true)
+            {
+                User = (User)dgridUsersR.SelectedItem;
+                toTbx += $"{User.Username} {User.Name} {User.Surname} all reservations\n";
+                var list = DBManager.GetInstance().GetReservationsByLogin(User.Username);
+                if (list.Count > 0)
+                {
+                    foreach (var element in list)
+                        toTbx += element.Item1.ToString("dd-MM-yyy") + " - " + element.Item2.ToString("dd-MM-yyyy") + $" {element.Item4} {element.Item5} " + "cost: " + element.Item3.ToString("F2") + "\n";
+                    toTbx += $"Count: {list.Count}";
+                }
+                else
+                    toTbx += "No reservations yet.";
+                tbxRaport.Text = toTbx;
+            }
+            User = null;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(String.IsNullOrEmpty(tbxRaport.Text))
+            {
+                ErrorBox.Show("No raport generated");
+                return;
+            }  
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (.txt)|*.txt|(.doc)|*.doc|(.docx)|*.docx";
+            saveFileDialog.DefaultExt = "txt";
+
+            string path;
+            if (saveFileDialog.ShowDialog() == true)
+                path = saveFileDialog.FileName;
+            else
+                return;
+            try
+            {
+                StreamWriter sw = new StreamWriter(path);
+                sw.Write(tbxRaport.Text);
+                sw.Close();
+            }
+            catch
+            {
+                ErrorBox.Show("Couldn't save file");
+            }
+        }
+
+        
     }
 }

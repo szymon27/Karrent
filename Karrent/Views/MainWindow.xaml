@@ -88,7 +88,7 @@
                                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Price/h: " Foreground="Red"/>
                                     <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Price}" Foreground="Red"/>
                                 </Grid>
-                                <Button Content="Order" Tag="{Binding Id}" BorderBrush="Red" Background="White" Foreground="Red" Height="40" Click="createReservationWindow"/>
+                                <Button Content="Order" Tag="{Binding Id}" BorderBrush="Red" Background="White" Foreground="Red" Height="40" Click="createReservationWindow" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

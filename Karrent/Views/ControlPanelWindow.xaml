@@ -232,40 +232,58 @@
             <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid x:Name="gridRaports" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" ></ColumnDefinition>
-                        <ColumnDefinition Width="220"></ColumnDefinition>
+                        <ColumnDefinition Width="180" ></ColumnDefinition>
+                        <ColumnDefinition Width="268"></ColumnDefinition>
                         <ColumnDefinition Width="113"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label x:Name="lblRaportName1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"></Label>
-                    <DatePicker x:Name="dateBegin" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"></DatePicker>
-                    <DatePicker x:Name="dateEnd" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"></DatePicker>
-                    <Button x:Name="btnGenerate1" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0"></Button>
+                    <Label x:Name="lblRaportPeriodOfTime" Content="Raport from period of time." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"></Label>
+                    <DatePicker x:Name="dateBeginR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"></DatePicker>
+                    <DatePicker x:Name="dateEndR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"></DatePicker>
+                    <Button x:Name="btnGenerateTimePeriod" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Click="btnGenerateTimePeriod_Click"></Button>
 
-                    <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"></CheckBox>
-                    <CheckBox x:Name="chbxReservationsTime" Content="Reservations" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="87,0,0,0"/>
+                    <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" Grid.Row="1" FontSize="12" Margin="0,0,123,24">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox x:Name="chbxReservationsTime" Content="Reservations" Grid.Column="0" Grid.Row="1" Margin="57,0,34,24" FontSize="12">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
 
-                    <Label x:Name="lblRaportName2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
-                    <TextBox x:Name="txtPlateNumberR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2"></TextBox>
-                    <Button x:Name="btnGenerate2" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2"></Button>
+                    <Label x:Name="lblRaportAboutCar" Content="Raport about car." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
+                    <DataGrid x:Name="dgridCarsR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"></DataGrid>
+                    <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Click="btnGenerateAboutCar_Click"></Button>
 
-                    <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+                    <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="0,0,92,23">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
 
-                    <Label x:Name="lblRaportName3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
-                    <TextBox x:Name="txtUsernameR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4"></TextBox>
-                    <Button x:Name="btnGenerate3" Content="Generuj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4"></Button>
-                   
-                    <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+                    <Label x:Name="lblRaportAboutUser" Content="Raport about user." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
+                    <DataGrid x:Name="dgridUsersR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"></DataGrid>
+                    <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" Click="btnGenerateAboutUser_Click"></Button>
 
-                    <TextBlock x:Name="tbxRaport" Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"/>
+                    <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" FontSize="12" Margin="0,0,91,24" >
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
+                    <TextBox x:Name="tbxRaport" Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"/>
+                    <Button x:Name="btnSave" Content="Save" Grid.Row="6" Grid.Column="3" Click="btnSave_Click"></Button>
                 </Grid>
             </StackPanel>
         </Grid>
