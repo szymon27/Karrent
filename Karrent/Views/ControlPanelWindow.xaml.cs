@@ -760,9 +760,14 @@ namespace Karrent.Views
                 var list = DBManager.GetInstance().GetReservationsByPlateNumber(Car.PlateNumber);
                 if (list.Count > 0)
                 {
+                    decimal money = 0;
                     foreach (var element in list)
+                    {
                         toTbx += element.Item1.ToString("dd-MM-yyy") + " - " + element.Item2.ToString("dd-MM-yyyy") + " cost: " + element.Item3.ToString("F2") + "\n";
-                    toTbx += $"Count: {list.Count}";
+                        money += element.Item3;
+                    }
+                     
+                    toTbx += $"Total money made: {money}\nCount: {list.Count}";
                 }
                 else
                     toTbx += "No reservations yet.";
@@ -791,9 +796,13 @@ namespace Karrent.Views
                 var list = DBManager.GetInstance().GetReservationsByLogin(User.Username);
                 if (list.Count > 0)
                 {
+                    decimal money = 0;
                     foreach (var element in list)
+                    {
                         toTbx += element.Item1.ToString("dd-MM-yyy") + " - " + element.Item2.ToString("dd-MM-yyyy") + $" {element.Item4} {element.Item5} " + "cost: " + element.Item3.ToString("F2") + "\n";
-                    toTbx += $"Count: {list.Count}";
+                        money += element.Item3;
+                    }
+                    toTbx += $"Total money spent: {money}\nCount: {list.Count}";                   
                 }
                 else
                     toTbx += "No reservations yet.";
