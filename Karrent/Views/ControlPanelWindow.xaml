@@ -24,13 +24,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnAddUser" Content="Add user" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="btnAddUser_Click"/>
-            <Button x:Name="btnEditUser" Content="Edit user" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="btnEditUser_Click"/>
-            <Button x:Name="btnAddModel" Content="Add model" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="btnAddModel_Click"/>
-            <Button x:Name="btnEditModel" Content="Edit model" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="3" Click="btnEditModel_Click"/>
-            <Button x:Name="btnAddCar" Content="Add car" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="4" Click="btnAddCar_Click"/>
-            <Button x:Name="btnEditCar" Content="Edit car" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="5" Click="btnEditCar_Click"/>
-            <Button x:Name="btnRaports" Content="Raports" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="6" Click="btnRaports_Click"/>
+            <Button x:Name="btnAddUser" Content="Add user" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="btnAddUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnEditUser" Content="Edit user" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="btnEditUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnAddModel" Content="Add model" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="btnAddModel_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnEditModel" Content="Edit model" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="3" Click="btnEditModel_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnAddCar" Content="Add car" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="4" Click="btnAddCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnEditCar" Content="Edit car" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="5" Click="btnEditCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+            <Button x:Name="btnRaports" Content="Raports" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="6" Click="btnRaports_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
         </Grid>
         <Grid x:Name="gridPanels" Grid.Row="1" Grid.Column="0">
             <StackPanel x:Name="stackPanelAddUser" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
@@ -64,7 +64,7 @@
                     <RadioButton x:Name="rbtnEmployee" Content="Employee" HorizontalAlignment="Left" Margin="5,5,0,5" IsChecked="True" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
                     <RadioButton x:Name="rbtnManager" Content="Manager" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
                     <RadioButton x:Name="rbtnCustomer" Content="Customer" HorizontalAlignment="Left" Margin="90,10,-29,10" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <Button x:Name="btnAddUserDone" Content="Done" HorizontalAlignment="Center" Margin="5,5,0,5" Width="75" Click="btnAddUserDone_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btnAddUserDone" Content="Done" HorizontalAlignment="Center" Margin="5,5,0,5" Width="75" Click="btnAddUserDone_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelEditUser" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
@@ -100,7 +100,7 @@
                     <RadioButton x:Name="rbtnEmployeeE" Content="Employee" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
                     <RadioButton x:Name="rbtnManagerE" Content="Manager" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
                     <RadioButton x:Name="rbtnCustomerE" Content="Customer" HorizontalAlignment="Left" Margin="90,10,-29,10" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <Button x:Name="btnEditUserDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" Width="75" Click="btnEditUserDone_Click" Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btnEditUserDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" Width="75" Click="btnEditUserDone_Click" Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <RadioButton x:Name="rbtnActiveE" Content="Active" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
                     <RadioButton x:Name="rbtnInActiveE" Content="Inactive" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
                     <ListBox x:Name="lstUsers" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" SelectionChanged="lstUsers_SelectionChanged"/>
@@ -134,9 +134,9 @@
                     <ComboBox x:Name="cbxEngineTypes" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="5"/>
                     <Label x:Name="lblBodyType" Content="Body type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="4"/>
                     <Label x:Name="lblEngineType" Content="Engine type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="5"/>
-                    <Button x:Name="btnAddModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="6" Click="btnAddModelDone_Click"/>
-                    <Button x:Name="btnAddImage" Content="Add image" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75"  Grid.Column="1" Grid.Row="6" Click="btnAddImage_Click"/>
-                    <Button x:Name="btnRemoveImage" Content="Remove image" HorizontalAlignment="Left" Margin="90,5,0,5" VerticalAlignment="Center" Width="90" Grid.Column="1" Grid.Row="6" Click="btnRemoveImage_Click"/>
+                    <Button x:Name="btnAddModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="6" Click="btnAddModelDone_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+                    <Button x:Name="btnAddImage" Content="Add image" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75"  Grid.Column="1" Grid.Row="6" Click="btnAddImage_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+                    <Button x:Name="btnRemoveImage" Content="Remove image" HorizontalAlignment="Left" Margin="90,5,0,5" VerticalAlignment="Center" Width="90" Grid.Column="1" Grid.Row="6" Click="btnRemoveImage_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <Image x:Name="imgModel" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Grid.RowSpan="6"/>
                     <Label x:Name="lblImgModelPath" Content="" Grid.Column="2" Grid.Row="6" Margin="5,5,5,5"/>
                 </Grid>
@@ -171,9 +171,9 @@
                     <ComboBox x:Name="cbxEngineTypesE" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="6"/>
                     <Label x:Name="lblBodyTypeE" Content="Body type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="5"/>
                     <Label x:Name="lblEngineTypeE" Content="Engine type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="6"/>
-                    <Button x:Name="btnEditModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="7" Click="btnEditModelDone_Click"/>
-                    <Button x:Name="btnAddImageE" Content="Add image" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75"  Grid.Column="1" Grid.Row="7" Click="btnAddImageE_Click"/>
-                    <Button x:Name="btnRemoveImageE" Content="Remove image" HorizontalAlignment="Left" Margin="90,5,0,5" VerticalAlignment="Center" Width="90" Grid.Column="1" Grid.Row="7" Click="btnRemoveImageE_Click"/>
+                    <Button x:Name="btnEditModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="7" Click="btnEditModelDone_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+                    <Button x:Name="btnAddImageE" Content="Add image" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75"  Grid.Column="1" Grid.Row="7" Click="btnAddImageE_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+                    <Button x:Name="btnRemoveImageE" Content="Remove image" HorizontalAlignment="Left" Margin="90,5,0,5" VerticalAlignment="Center" Width="90" Grid.Column="1" Grid.Row="7" Click="btnRemoveImageE_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <Image x:Name="imgModelE" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Grid.RowSpan="6"/>
                     <Label x:Name="lblImgModelPathE" Content="" Grid.Column="2" Grid.Row="7" Margin="5,5,5,5"/>
                 </Grid>
@@ -198,7 +198,7 @@
                     <TextBox x:Name="txtMileage" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblInspectionDate" Content="Inspection date" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="115" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <DatePicker x:Name="dateInspectionDate" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                    <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40"/>
+                    <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
@@ -226,7 +226,7 @@
                     <DatePicker x:Name="dateInspectionDateE" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     <RadioButton x:Name="rbtnCarActive" GroupName="carActive" Grid.Column="0" Grid.Row="5" Content="Active" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
                     <RadioButton x:Name="rbtnCarInActive" GroupName="carActive" Grid.Column="1" Grid.Row="5" Content="Inactive" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
-                    <Button x:Name="btnAddCarDoneE" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Click="btnAddCarDoneE_Click"/>
+                    <Button x:Name="btnAddCarDoneE" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Click="btnAddCarDoneE_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible">
@@ -249,7 +249,7 @@
                     <Label x:Name="lblRaportPeriodOfTime" Content="Raport from period of time." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"></Label>
                     <DatePicker x:Name="dateBeginR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"></DatePicker>
                     <DatePicker x:Name="dateEndR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"></DatePicker>
-                    <Button x:Name="btnGenerateTimePeriod" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Click="btnGenerateTimePeriod_Click"></Button>
+                    <Button x:Name="btnGenerateTimePeriod" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Click="btnGenerateTimePeriod_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
                     <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" Grid.Row="1" FontSize="12" Margin="0,0,123,24">
                         <CheckBox.LayoutTransform>
@@ -264,7 +264,7 @@
 
                     <Label x:Name="lblRaportAboutCar" Content="Raport about car." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
                     <DataGrid x:Name="dgridCarsR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"></DataGrid>
-                    <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Click="btnGenerateAboutCar_Click"></Button>
+                    <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Click="btnGenerateAboutCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
                     <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="0,0,92,23">
                         <CheckBox.LayoutTransform>
@@ -274,7 +274,7 @@
 
                     <Label x:Name="lblRaportAboutUser" Content="Raport about user." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
                     <DataGrid x:Name="dgridUsersR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"></DataGrid>
-                    <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" Click="btnGenerateAboutUser_Click"></Button>
+                    <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" Click="btnGenerateAboutUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
                     <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" FontSize="12" Margin="0,0,91,24" >
                         <CheckBox.LayoutTransform>
@@ -283,7 +283,7 @@
                     </CheckBox>
 
                     <TextBox x:Name="tbxRaport" Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"/>
-                    <Button x:Name="btnSave" Content="Save" Grid.Row="6" Grid.Column="3" Click="btnSave_Click"></Button>
+                    <Button x:Name="btnSave" Content="Save" Grid.Row="6" Grid.Column="3" Click="btnSave_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
                 </Grid>
             </StackPanel>
         </Grid>

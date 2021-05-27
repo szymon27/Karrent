@@ -201,25 +201,59 @@ namespace Karrent.Views
                 cmbFilterBodyType.ItemsSource = Bodies;
             }
         }
-        
+        private void TypesIndexSetTo0()
+        {
+            if(cmbFilterBodyType.SelectedIndex > 0)
+            {
+                cars = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).ToList();
+                listView.ItemsSource = cars;
+            }
+            if(cmbFilterEngineType.SelectedIndex > 0)
+            {
+                cars = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).ToList();
+                listView.ItemsSource = cars;
+            }
+        }
         private void cmbFilterBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            //Filter();
+            if (!isSetUp) return;
+            if (cmbFilterBrand.SelectedIndex == 0)
+            {
+                cars = DBManager.GetInstance().GetActiveCars().ToList();
+                listView.ItemsSource = cars;
+                return;
+            }
+            
+            cars = DBManager.GetInstance().GetActiveCars().Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).ToList();
+            listView.ItemsSource = cars;
+
+            Models = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
+            Models.Insert(0, "Model");
+            cmbFilterModel.ItemsSource = Models;
+
+            
+
         }
 
         private void cmbFilterModel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            //Filter();
+            if (!isSetUp) return;
         }
 
         private void cmbFilterBodyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            //Filter();
+            if (!isSetUp) return;
+
         }
 
         private void cmbFilterEngineType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            //Filter();
+            if (!isSetUp) return;
+
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)

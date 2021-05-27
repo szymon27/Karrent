@@ -14,7 +14,7 @@
         <DatePicker x:Name="dpckEnd" HorizontalAlignment="Left" Margin="157,235,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckEnd_SelectedDateChanged"/>
         <Image x:Name="imgCar" HorizontalAlignment="Left" Height="220" Margin="537,10,0,0" VerticalAlignment="Top" Width="245"/>
         <TextBlock x:Name="txtCarDetails" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="220" Width="251"/>
-        <Button x:Name="btnOrder" Content="Order" HorizontalAlignment="Left" Margin="648,301,0,0" VerticalAlignment="Top" Width="106" Height="40" Click="btnOrder_Click"/>
+        <Button x:Name="btnOrder" Content="Order" HorizontalAlignment="Left" Margin="648,301,0,0" VerticalAlignment="Top" Width="106" Height="40" Click="btnOrder_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
         <Label x:Name="lblCost" Content="Cost:" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblPrice" Content="" HorizontalAlignment="Left" Margin="51,346,0,0" VerticalAlignment="Top" Width="98"/>
     </Grid>
