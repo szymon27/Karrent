@@ -103,8 +103,8 @@
                     <Button x:Name="btnEditUserDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" Width="75" Click="btnEditUserDone_Click" Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <RadioButton x:Name="rbtnActiveE" Content="Active" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
                     <RadioButton x:Name="rbtnInActiveE" Content="Inactive" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
-                    <DataGrid x:Name="lstUsers" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" SelectionChanged="lstUsers_SelectionChanged" IsReadOnly="True" >
-                    </DataGrid>
+                    <ListBox x:Name="lstUsers" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" SelectionChanged="lstUsers_SelectionChanged">
+                    </ListBox>
 
                 </Grid>
             </StackPanel>
@@ -160,7 +160,7 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="lstModels" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="5,5,5,5" SelectionChanged="lstModels_SelectionChanged" IsReadOnly="True"/>
+                    <ListBox x:Name="lstModels" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="5,5,5,5" SelectionChanged="lstModels_SelectionChanged"/>
                     <Label x:Name="lblBrandE" Content="Brand: " HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="1"/>
                     <Label x:Name="lblModelE" Content="Model:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="2"/>
                     <Label x:Name="lblHorsePowerE" Content="Horse power:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="3"/>
@@ -193,7 +193,7 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="lstCarDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" IsReadOnly="True"/>
+                    <ListBox x:Name="lstCarDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5"/>
                     <Label x:Name="lblPlateNumber" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <TextBox x:Name="txtPlateNumber" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblMileage" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
@@ -218,8 +218,8 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="lstCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarsE_SelectionChanged" IsReadOnly="True"/>
-                    <DataGrid x:Name="lstCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarDetailsE_SelectionChanged" IsReadOnly="True"/>
+                    <ListBox x:Name="lstCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarsE_SelectionChanged"/>
+                    <ListBox x:Name="lstCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarDetailsE_SelectionChanged"/>
                     <Label x:Name="lblPlateNumberE" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <TextBox x:Name="txtPlateNumberE" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblMileageE" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>

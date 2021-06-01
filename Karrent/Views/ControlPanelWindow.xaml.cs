@@ -355,7 +355,7 @@ namespace Karrent.Views
             int index = lstUsers.SelectedIndex;
             if (index <= -1 || index >= lstUsers.Items.Count)
             {
-                //EditUserClear();
+                EditUserClear();
                 return;
             }
             this.User = (User)lstUsers.Items.GetItemAt(index);
@@ -485,7 +485,7 @@ namespace Karrent.Views
             int index = lstModels.SelectedIndex;
             if (index <= -1 || index >= lstModels.Items.Count)
             {
-                //EditModelClear();
+                EditModelClear();
                 return;
             }
             this.Model = (CarDetails)lstModels.Items.GetItemAt(index);
