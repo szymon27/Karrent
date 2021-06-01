@@ -435,9 +435,9 @@ namespace Karrent
             }
         }
 
-        public List<(string, string, DateTime, DateTime, decimal)> GetReservations()
+        public List<Reservation> GetReservations()
         {
-            List <(string, string, DateTime, DateTime, decimal)> list = new List<(string, string, DateTime, DateTime, decimal)>();
+            List <Reservation> list = new List<Reservation>();
             try
             {
                 MySqlCommand mySqlCommand = new MySqlCommand($"call getReservationsByUserId({CurrentUser.GetInstance().User.Id});", _instance.mySqlConnection);
@@ -449,7 +449,7 @@ namespace Karrent
                     DateTime begin = mySqlDataReader.GetDateTime(2);
                     DateTime end = mySqlDataReader.GetDateTime(3);
                     Decimal price = mySqlDataReader.GetDecimal(4);
-                    list.Add((brand, model, begin, end, price));
+                    list.Add(new Reservation(brand, model, begin, end, price));
                 }
                 mySqlDataReader.Close();
                 return list;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent.Views"
         mc:Ignorable="d"
-        Title="ControlPanelWindow" Height="450" Width="800" MaxWidth="800" MaxHeight="500">
+        Title="ControlPanelWindow" Height="450" Width="800" MaxWidth="800" MaxHeight="600" MinHeight="600" MinWidth="800">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -103,9 +103,18 @@
                     <Button x:Name="btnEditUserDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" Width="75" Click="btnEditUserDone_Click" Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <RadioButton x:Name="rbtnActiveE" Content="Active" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
                     <RadioButton x:Name="rbtnInActiveE" Content="Inactive" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
-                    <ListBox x:Name="lstUsers" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" SelectionChanged="lstUsers_SelectionChanged">
-                    </ListBox>
 
+                    <DataGrid x:Name="dgUsers" SelectionMode="Single" Background="White" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" IsReadOnly="True" ItemsSource="{Binding User}" AutoGenerateColumns="False" SelectionChanged="dgUsers_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="User type" Binding="{Binding UserType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="BirthDate" Binding="{Binding BirthDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Is active" Binding="{Binding IsActive}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelAddModel" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
@@ -160,7 +169,6 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox x:Name="lstModels" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="5,5,5,5" SelectionChanged="lstModels_SelectionChanged"/>
                     <Label x:Name="lblBrandE" Content="Brand: " HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="1"/>
                     <Label x:Name="lblModelE" Content="Model:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="2"/>
                     <Label x:Name="lblHorsePowerE" Content="Horse power:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="3"/>
@@ -178,6 +186,17 @@
                     <Button x:Name="btnRemoveImageE" Content="Remove image" HorizontalAlignment="Left" Margin="90,5,0,5" VerticalAlignment="Center" Width="90" Grid.Column="1" Grid.Row="7" Click="btnRemoveImageE_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <Image x:Name="imgModelE" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Grid.RowSpan="6"/>
                     <Label x:Name="lblImgModelPathE" Content="" Grid.Column="2" Grid.Row="7" Margin="5,5,5,5"/>
+                    <DataGrid x:Name="dgModels" SelectionMode="Single" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="White" IsReadOnly="True" ItemsSource="{Binding CarDetails}" AutoGenerateColumns="False" SelectionChanged="dgModels_SelectionChanged" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Body type" Binding="{Binding BodyType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Engine type" Binding="{Binding EngineType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Horse power" Binding="{Binding HorsePower}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelAddCar" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
@@ -193,7 +212,17 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox x:Name="lstCarDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5"/>
+                    <DataGrid x:Name="dgCarDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding CarDetails}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Body type" Binding="{Binding BodyType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Engine type" Binding="{Binding EngineType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Horse power" Binding="{Binding HorsePower}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Label x:Name="lblPlateNumber" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <TextBox x:Name="txtPlateNumber" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblMileage" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
@@ -203,7 +232,7 @@
                     <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden" d:IsHidden="True">
                 <Grid x:Name="gridEditCar" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" ></ColumnDefinition>
@@ -218,8 +247,27 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox x:Name="lstCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarsE_SelectionChanged"/>
-                    <ListBox x:Name="lstCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" SelectionChanged="lstCarDetailsE_SelectionChanged"/>
+                    <DataGrid x:Name="dgCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding CarDetails.Brand}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Model" Binding="{Binding CarDetails.Model}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Milege" Binding="{Binding Mileage}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Is active" Binding="{Binding IsActive}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Inspection date" Binding="{Binding InspectionDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="dgCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding CarDetails}" AutoGenerateColumns="False" SelectionChanged="dgCarDetailsE_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Body type" Binding="{Binding BodyType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Engine type" Binding="{Binding EngineType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Horse power" Binding="{Binding HorsePower}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Label x:Name="lblPlateNumberE" Content="Plate number" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <TextBox x:Name="txtPlateNumberE" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblMileageE" Content="Mileage" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="89" Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
@@ -265,7 +313,16 @@
                     </CheckBox>
 
                     <Label x:Name="lblRaportAboutCar" Content="Raport about car." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
-                    <DataGrid x:Name="dgridCarsR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" IsReadOnly="True"></DataGrid>
+                    <DataGrid x:Name="dgridCarsR" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding CarDetails.Brand}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Model" Binding="{Binding CarDetails.Model}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Milege" Binding="{Binding Mileage}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Is active" Binding="{Binding IsActive}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Inspection date" Binding="{Binding InspectionDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Click="btnGenerateAboutCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
                     <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="0,0,92,23">
@@ -275,7 +332,17 @@
                     </CheckBox>
 
                     <Label x:Name="lblRaportAboutUser" Content="Raport about user." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
-                    <DataGrid x:Name="dgridUsersR" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" IsReadOnly="True"></DataGrid>
+                    <DataGrid x:Name="dgridUsersR" SelectionMode="Single" Background="White" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" IsReadOnly="True" ItemsSource="{Binding User}" AutoGenerateColumns="False" SelectionChanged="dgUsers_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="User type" Binding="{Binding UserType}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="BirthDate" Binding="{Binding BirthDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Is active" Binding="{Binding IsActive}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" Click="btnGenerateAboutUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
                     <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" FontSize="12" Margin="0,0,91,24" >

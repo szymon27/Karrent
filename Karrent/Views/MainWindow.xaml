@@ -48,7 +48,7 @@
             <Button x:Name="btnRefresh" Content ="Refresh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnRefresh_Click" Grid.Column="6" Grid.Row="0" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
         </Grid>
         <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="scrollViewer" VerticalScrollBarVisibility="Hidden">
-            <ItemsControl x:Name="listView" ItemsSource="{Binding Car}">
+            <ItemsControl x:Name="listView">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="#CB3434" CornerRadius="10" Margin="10">

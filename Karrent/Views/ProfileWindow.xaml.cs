@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Karrent.Objects;
 
 namespace Karrent.Views
 {
@@ -25,11 +26,11 @@ namespace Karrent.Views
             txtName.Text = CurrentUser.GetInstance().User.Name;
             txtSurname.Text = CurrentUser.GetInstance().User.Surname;
             dateBirthDate.SelectedDate = CurrentUser.GetInstance().User.BirthDate;
-            var rentedCarsList = DBManager.GetInstance().GetReservations();
-            lstRentedCars.Items.Clear();
-            foreach (var element in rentedCarsList)
-                lstRentedCars.Items.Add($"{element.Item1} {element.Item2} {element.Item3.ToString("yyyy-MM-dd")}" +
-                    $" {element.Item4.ToString("yyyy-MM-dd")} {element.Item5.ToString()}");
+            dgRentedCars.ItemsSource = DBManager.GetInstance().GetReservations();
+            //dgRentedCars.Items.Clear();
+            //foreach (Reservation res in rentedCarsList)
+            //    dgRentedCars.Items.Add($"{res.Brand} {res.Model} {res.Begin.ToString("yyyy-MM-dd")}" +
+            //        $" {res.End.ToString("yyyy-MM-dd")} {res.Price.ToString()}");
         }
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {

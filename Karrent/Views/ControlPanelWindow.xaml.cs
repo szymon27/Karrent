@@ -43,7 +43,6 @@ namespace Karrent.Views
                 cbxEngineTypes.Items.Add(engineType);
                 cbxEngineTypesE.Items.Add(engineType);
             }
-
             HideAllStackPanels();
         }
 
@@ -56,13 +55,6 @@ namespace Karrent.Views
             stackPanelAddCar.Visibility = Visibility.Hidden;
             stackPanelEditCar.Visibility = Visibility.Hidden;
             stackPanelRaports.Visibility = Visibility.Hidden;
-
-           //AddUserClear();
-           //EditUserClear();
-           //AddModelClear();
-           //EditModelClear();
-           //AddCarClear();
-           //EditCarClear();
         }
 
         private void AddUserClear()
@@ -92,10 +84,8 @@ namespace Karrent.Views
             rbtnManagerE.IsChecked = false;
             rbtnActiveE.IsChecked = false;
             rbtnInActiveE.IsChecked = false;
-            //lstUsers.SelectedIndex = -1;
-            
-            lstUsers.ItemsSource = DBManager.GetInstance().GetUsers();
-
+            dgUsers.SelectedIndex = -1;
+            dgUsers.ItemsSource = DBManager.GetInstance().GetUsers();
         }
 
         private void AddModelClear()
@@ -122,8 +112,8 @@ namespace Karrent.Views
             cbxEngineTypesE.SelectedIndex = -1;
             imgModelE.Source = null;
             lblImgModelPathE.Content = String.Empty;
-            lstModels.SelectedIndex = -1;
-            lstModels.ItemsSource = DBManager.GetInstance().GetModels();
+            //dgModels.SelectedIndex = -1;
+            dgModels.ItemsSource = DBManager.GetInstance().GetModels();
         }
 
         private void AddCarClear()
@@ -131,8 +121,8 @@ namespace Karrent.Views
             txtPlateNumber.Text = String.Empty;
             txtMileage.Text = String.Empty;
             dateInspectionDate.SelectedDate = null;
-            lstCarDetails.SelectedIndex = -1;
-            lstCarDetails.ItemsSource = DBManager.GetInstance().GetModels();
+            dgCarDetails.SelectedIndex = -1;
+            dgCarDetails.ItemsSource = DBManager.GetInstance().GetModels();
         }
 
         private void EditCarClear()
@@ -141,10 +131,10 @@ namespace Karrent.Views
             txtPlateNumberE.Text = String.Empty;
             txtMileageE.Text = String.Empty;
             dateInspectionDateE.SelectedDate = null;
-            lstCarsE.SelectedIndex = -1;
-            lstCarsE.ItemsSource = DBManager.GetInstance().GetCars();
-            lstCarDetailsE.SelectedIndex = -1;
-            lstCarDetailsE.ItemsSource = DBManager.GetInstance().GetModels();
+            dgCarsE.SelectedIndex = -1;
+            dgCarsE.ItemsSource = DBManager.GetInstance().GetCars();
+            dgCarDetailsE.SelectedIndex = -1;
+            dgCarDetailsE.ItemsSource = DBManager.GetInstance().GetModels();
             rbtnCarActive.IsChecked = false;
             rbtnCarInActive.IsChecked = false;
         }
@@ -343,33 +333,11 @@ namespace Karrent.Views
                 surname, birthDate.GetValueOrDefault().ToString("yyyy-MM-dd"), active))
             {
                 InfoBox.Show("Changes saved");
-                lstUsers.ItemsSource = DBManager.GetInstance().GetUsers();
+                dgUsers.ItemsSource = DBManager.GetInstance().GetUsers();
                 EditUserClear();
             }
             else
                 ErrorBox.Show("Changes not saved");
-        }
-
-        private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = lstUsers.SelectedIndex;
-            if (index <= -1 || index >= lstUsers.Items.Count)
-            {
-                EditUserClear();
-                return;
-            }
-            this.User = (User)lstUsers.Items.GetItemAt(index);
-            txtUsernameE.Text = this.User.Username;
-            txtNameE.Text = this.User.Name;
-            txtSurnameE.Text = this.User.Surname;
-            dateBrthDateE.SelectedDate = this.User.BirthDate;
-            UserTypes userType = this.User.UserType;
-            if (userType == UserTypes.Customer) rbtnCustomerE.IsChecked = true;
-            if (userType == UserTypes.Employee) rbtnEmployeeE.IsChecked = true;
-            if (userType == UserTypes.Manager) rbtnManagerE.IsChecked = true;
-            bool isActive = this.User.IsActive;
-            if (isActive) rbtnActiveE.IsChecked = true;
-            else rbtnInActiveE.IsChecked = true;
         }
 
         private void btnAddModelDone_Click(object sender, RoutedEventArgs e)
@@ -480,24 +448,6 @@ namespace Karrent.Views
             }
         }
 
-        private void lstModels_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = lstModels.SelectedIndex;
-            if (index <= -1 || index >= lstModels.Items.Count)
-            {
-                EditModelClear();
-                return;
-            }
-            this.Model = (CarDetails)lstModels.Items.GetItemAt(index);
-            txtBrandE.Text = this.Model.Brand;
-            txtModelE.Text = this.Model.Model;
-            txtHorsePowerE.Text = this.Model.HorsePower.ToString();
-            txtPriceE.Text = this.Model.Price.ToString();
-            cbxBodyTypesE.SelectedIndex = ((int)this.Model.BodyType) - 1;
-            cbxEngineTypesE.SelectedIndex = ((int)this.Model.EngineType) - 1;
-            imgModelE.Source = this.Model.Photo;
-        }
-
         private void btnEditModelDone_Click(object sender, RoutedEventArgs e)
         {
             string brand = txtBrandE.Text;
@@ -529,7 +479,6 @@ namespace Karrent.Views
                 return;
             }
 
-            //if (String.IsNullOrEmpty(this.pathToImgModelE))
             if(imgModelE.Source == null)
             {
                 ErrorBox.Show("Choose image");
@@ -561,8 +510,8 @@ namespace Karrent.Views
 
         private void btnAddCarDone_Click(object sender, RoutedEventArgs e)
         {
-            int index = lstCarDetails.SelectedIndex;
-            if(index <= -1 || index >= lstCarDetails.Items.Count)
+            int index = dgCarDetails.SelectedIndex;
+            if(index <= -1 || index >= dgCarDetails.Items.Count)
             {
                 ErrorBox.Show("Choose model");
                 return;
@@ -589,7 +538,7 @@ namespace Karrent.Views
                 return;
             }
 
-            if (DBManager.GetInstance().AddCar(((CarDetails)lstCarDetails.Items.GetItemAt(index)).Id, plateNumber,
+            if (DBManager.GetInstance().AddCar(((CarDetails)dgCarDetails.Items.GetItemAt(index)).Id, plateNumber,
                 mileage, inspectionDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
             {
                 InfoBox.Show($"Created car");
@@ -599,49 +548,13 @@ namespace Karrent.Views
                 ErrorBox.Show("Couldn't create car");
         }
 
-        private void lstCarDetailsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lstCarDetailsE.SelectedIndex == -1)
-                return;
-            int carIndex = lstCarsE.SelectedIndex;
-            if(carIndex <= -1 || carIndex >= lstCarsE.Items.Count)
-            {
-                ErrorBox.Show("Chose car first");
-                lstCarDetailsE.SelectedIndex = -1;
-                return;
-            }
-        }
-
-        private void lstCarsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int carIndex = lstCarsE.SelectedIndex;
-            if (carIndex <= -1 || carIndex >= lstCarsE.Items.Count)
-                return;
-
-            Car = (Car)lstCarsE.Items.GetItemAt(carIndex);
-            var carDetailsList = (IEnumerable<CarDetails>)lstCarDetailsE.ItemsSource;
-            int index = -1;
-            for (int i = 0; i < carDetailsList.Count(); i++)
-                if(carDetailsList.ElementAt(i).Id == Car.CarDetails.Id)
-                {
-                    index = i;
-                    break;
-                }
-            lstCarDetailsE.SelectedIndex = index;
-            txtPlateNumberE.Text = Car.PlateNumber;
-            txtMileageE.Text = Car.Mileage.ToString();
-            if (Car.IsActive) rbtnCarActive.IsChecked = true;
-            else rbtnCarInActive.IsChecked = true;
-            dateInspectionDateE.SelectedDate = Car.InspectionDate;
-        }
-
         private void btnAddCarDoneE_Click(object sender, RoutedEventArgs e)
         {
             if (Car == null)
                 return;
 
-            int modelIndex = lstCarDetailsE.SelectedIndex;
-            if(modelIndex <= -1 || modelIndex >= lstCarDetailsE.Items.Count)
+            int modelIndex = dgCarDetailsE.SelectedIndex;
+            if(modelIndex <= -1 || modelIndex >= dgCarDetailsE.Items.Count)
             {
                 ErrorBox.Show("Chose model first");
                 return;
@@ -672,7 +585,7 @@ namespace Karrent.Views
             if (rbtnCarActive.IsChecked == true) active = true;
             else active = false;
 
-            if (DBManager.GetInstance().EditCar(Car.Id, ((CarDetails)lstCarDetailsE.Items.GetItemAt(modelIndex)).Id, plateNumber,
+            if (DBManager.GetInstance().EditCar(Car.Id, ((CarDetails)dgCarDetailsE.Items.GetItemAt(modelIndex)).Id, plateNumber,
                 mileage, active, inspectionDate.GetValueOrDefault().ToString("yyyy-MM-dd")))
             {
                 InfoBox.Show($"Changes saved");
@@ -844,6 +757,80 @@ namespace Karrent.Views
             }
         }
 
-        
+        private void dgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = dgUsers.SelectedIndex;
+            if (index <= -1 || index >= dgUsers.Items.Count)
+            {
+                EditUserClear();
+                return;
+            }
+            this.User = (User)dgUsers.Items.GetItemAt(index);
+            txtUsernameE.Text = this.User.Username;
+            txtNameE.Text = this.User.Name;
+            txtSurnameE.Text = this.User.Surname;
+            dateBrthDateE.SelectedDate = this.User.BirthDate;
+            UserTypes userType = this.User.UserType;
+            if (userType == UserTypes.Customer) rbtnCustomerE.IsChecked = true;
+            if (userType == UserTypes.Employee) rbtnEmployeeE.IsChecked = true;
+            if (userType == UserTypes.Manager) rbtnManagerE.IsChecked = true;
+            bool isActive = this.User.IsActive;
+            if (isActive) rbtnActiveE.IsChecked = true;
+            else rbtnInActiveE.IsChecked = true;
+        }
+
+        private void dgModels_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = dgModels.SelectedIndex;
+            if (index <= -1 || index >= dgModels.Items.Count)
+            {
+                EditModelClear();
+                return;
+            }
+            this.Model = (CarDetails)dgModels.Items.GetItemAt(index);
+            txtBrandE.Text = this.Model.Brand;
+            txtModelE.Text = this.Model.Model;
+            txtHorsePowerE.Text = this.Model.HorsePower.ToString();
+            txtPriceE.Text = this.Model.Price.ToString();
+            cbxBodyTypesE.SelectedIndex = ((int)this.Model.BodyType) - 1;
+            cbxEngineTypesE.SelectedIndex = ((int)this.Model.EngineType) - 1;
+            imgModelE.Source = this.Model.Photo;
+        }
+
+        private void dgCarsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int carIndex = dgCarsE.SelectedIndex;
+            if (carIndex <= -1 || carIndex >= dgCarsE.Items.Count)
+                return;
+
+            Car = (Car)dgCarsE.Items.GetItemAt(carIndex);
+            var carDetailsList = (IEnumerable<CarDetails>)dgCarDetailsE.ItemsSource;
+            int index = -1;
+            for (int i = 0; i < carDetailsList.Count(); i++)
+                if (carDetailsList.ElementAt(i).Id == Car.CarDetails.Id)
+                {
+                    index = i;
+                    break;
+                }
+            dgCarDetailsE.SelectedIndex = index;
+            txtPlateNumberE.Text = Car.PlateNumber;
+            txtMileageE.Text = Car.Mileage.ToString();
+            if (Car.IsActive) rbtnCarActive.IsChecked = true;
+            else rbtnCarInActive.IsChecked = true;
+            dateInspectionDateE.SelectedDate = Car.InspectionDate;
+        }
+
+        private void dgCarDetailsE_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgCarDetailsE.SelectedIndex == -1)
+                return;
+            int carIndex = dgCarsE.SelectedIndex;
+            if (carIndex <= -1 || carIndex >= dgCarsE.Items.Count)
+            {
+                ErrorBox.Show("Chose car first");
+                dgCarDetailsE.SelectedIndex = -1;
+                return;
+            }
+        }
     }
 }

@@ -117,6 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Objects\Reservation.cs" />
     <Compile Include="Objects\ReservationPeriod.cs" />
     <Compile Include="Objects\SecurityPackage.cs" />
     <Compile Include="Views\ControlPanelWindow.xaml.cs">

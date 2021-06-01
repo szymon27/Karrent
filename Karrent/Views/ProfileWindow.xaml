@@ -12,7 +12,15 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="lstRentedCars" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Margin="1,1,1,1"/>
+            <DataGrid x:Name="dgRentedCars" SelectionMode="Single" Background="White" Grid.Column="0" Grid.Row="0" IsReadOnly="True" ItemsSource="{Binding Reservation}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Begin" Binding="{Binding Begin, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="End" Binding="{Binding End, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             <Grid x:Name="Info" Grid.Column="1" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
