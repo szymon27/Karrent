@@ -201,18 +201,28 @@ namespace Karrent.Views
                 cmbFilterBodyType.ItemsSource = Bodies;
             }
         }
-        private void TypesIndexSetTo0()
+        private void IndexSetTo0()
         {
-            if(cmbFilterBodyType.SelectedIndex > 0)
+            cars = DBManager.GetInstance().GetActiveCars().ToList();
+
+            if (cmbFilterBrand.SelectedIndex > 0)
+            {
+                cars = cars.Where(c=>c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).ToList();
+            }
+            if (cmbFilterModel.SelectedIndex > 0)
+            {
+                cars = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).ToList();
+            }
+            if (cmbFilterBodyType.SelectedIndex > 0)
             {
                 cars = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).ToList();
-                listView.ItemsSource = cars;
             }
-            if(cmbFilterEngineType.SelectedIndex > 0)
+            if (cmbFilterEngineType.SelectedIndex > 0)
             {
                 cars = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).ToList();
-                listView.ItemsSource = cars;
             }
+            listView.ItemsSource = cars;
+
         }
         private void cmbFilterBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -231,6 +241,7 @@ namespace Karrent.Views
             Models = cars.Where(c => c.CarDetails.Brand == cmbFilterBrand.SelectedItem.ToString()).Select(c => c.CarDetails.Model).Distinct().ToList();
             Models.Insert(0, "Model");
             cmbFilterModel.ItemsSource = Models;
+            cmbFilterModel.SelectedIndex = 0;
 
             
 
@@ -240,20 +251,45 @@ namespace Karrent.Views
         {
             //Filter();
             if (!isSetUp) return;
+            //if (cmbFilterModel.SelectedIndex == 0)
+            {
+                IndexSetTo0();
+            }
+            //else
+            //{
+            //    cars = cars.Where(c => c.CarDetails.Model == cmbFilterModel.SelectedItem.ToString()).ToList();
+            //    listView.ItemsSource = cars;
+            //}
         }
 
         private void cmbFilterBodyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Filter();
             if (!isSetUp) return;
-
+            //if (cmbFilterBodyType.SelectedIndex == 0)
+            {
+                IndexSetTo0();
+            }
+            //else
+            //{
+            //    cars = cars.Where(c => c.CarDetails.BodyType.ToString("G") == cmbFilterBodyType.SelectedItem.ToString()).ToList();
+            //    listView.ItemsSource = cars;
+            //}
         }
 
         private void cmbFilterEngineType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Filter();
             if (!isSetUp) return;
-
+            //if (cmbFilterEngineType.SelectedIndex == 0)
+            {
+                IndexSetTo0();
+            }
+            //else
+            //{
+            //    cars = cars.Where(c => c.CarDetails.EngineType.ToString("G") == cmbFilterEngineType.SelectedItem.ToString()).ToList();
+            //    listView.ItemsSource = cars;
+            //}
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)

@@ -92,7 +92,10 @@ namespace Karrent.Views
             rbtnManagerE.IsChecked = false;
             rbtnActiveE.IsChecked = false;
             rbtnInActiveE.IsChecked = false;
+            //lstUsers.SelectedIndex = -1;
+            
             lstUsers.ItemsSource = DBManager.GetInstance().GetUsers();
+
         }
 
         private void AddModelClear()
@@ -119,6 +122,7 @@ namespace Karrent.Views
             cbxEngineTypesE.SelectedIndex = -1;
             imgModelE.Source = null;
             lblImgModelPathE.Content = String.Empty;
+            lstModels.SelectedIndex = -1;
             lstModels.ItemsSource = DBManager.GetInstance().GetModels();
         }
 
@@ -351,7 +355,7 @@ namespace Karrent.Views
             int index = lstUsers.SelectedIndex;
             if (index <= -1 || index >= lstUsers.Items.Count)
             {
-                EditUserClear();
+                //EditUserClear();
                 return;
             }
             this.User = (User)lstUsers.Items.GetItemAt(index);
@@ -481,7 +485,7 @@ namespace Karrent.Views
             int index = lstModels.SelectedIndex;
             if (index <= -1 || index >= lstModels.Items.Count)
             {
-                EditModelClear();
+                //EditModelClear();
                 return;
             }
             this.Model = (CarDetails)lstModels.Items.GetItemAt(index);
