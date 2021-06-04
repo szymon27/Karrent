@@ -14,7 +14,7 @@ namespace Karrent
 {
     class DBManager
     {
-        private string connectionString = "datasource=localhost; port=3306; username=karrent; password=123qwe; database=karrent";
+        private string connectionString = "datasource=localhost; port=3306; username=root; database=karrent";
         private MySqlConnection mySqlConnection;
         protected static DBManager _instance;
 
