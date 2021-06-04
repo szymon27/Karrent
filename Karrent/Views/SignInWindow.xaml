@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent.Views"
         mc:Ignorable="d"
-        Title="SignInWindow" Height="277.366" Width="180.818" WindowStartupLocation="CenterScreen">
+        Title="KarRent" Height="230" Width="210" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="lblUsername" Content="Username" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="23" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passPassword" HorizontalAlignment="Left" Margin="25,97,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-        <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="25,76,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
-        <Button x:Name="btnSignIn" Content="SIGN IN" HorizontalAlignment="Left" Margin="25,147,0,0" VerticalAlignment="Top" Width="120" Height="44" Click="btnSignIn_Click"/>
-        <Button x:Name="btnSignUp" Content="SIGN UP" HorizontalAlignment="Left" Margin="25,200,0,0" VerticalAlignment="Top" Width="120" Height="44" Click="btnSignUp_Click"/>
+        <Label x:Name="lblUsername" Content="Username" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="23" Margin="10,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <PasswordBox x:Name="passPassword" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="170" Height="23"/>
+        <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
+        <Button x:Name="btnSignIn" Content="SIGN IN" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnSignIn_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+        <Button x:Name="btnSignUp" Content="SIGN UP" HorizontalAlignment="Left" Margin="105, 128, 10,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnSignUp_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
     </Grid>
 </Window>

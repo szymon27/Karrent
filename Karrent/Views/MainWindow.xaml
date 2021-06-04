@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent"
         mc:Ignorable="d"
-        Title="KarRent" Height="500" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
+        Title="KarRent" Height="600" Width="960" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"></ColumnDefinition>
@@ -52,34 +52,24 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="#CB3434" CornerRadius="10" Margin="10">
-                            <StackPanel Background="White" Width="150" Height="200" Margin="5">
+                            <StackPanel Background="White" Width="200" Height="200" Margin="5">
                                 <Border CornerRadius="5"></Border>
-                                <Image Source="{Binding CarDetails.Photo}"></Image>
+                                <Image Source="{Binding CarDetails.Photo}" Stretch="Fill" Width="195" Height="130"></Image>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
-                                        <ColumnDefinition Width="100"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Brand: " Foreground="#CB3434"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Brand}" Foreground="#CB3434"/>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
                                         <ColumnDefinition Width="50"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Model: " Foreground="#CB3434"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Model}" Foreground="#CB3434"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                        <TextBlock Text="{Binding CarDetails.Brand}" Foreground="#CB3434" FontSize="15"/>
+                                        <TextBlock Text=" " Foreground="#CB3434"/>
+                                        <TextBlock Text="{Binding CarDetails.Model}" Foreground="#CB3434" FontSize="15"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock FlowDirection="RightToLeft" FontSize="15" Text="{Binding CarDetails.Price}" Foreground="#CB3434"/>
+                                    </StackPanel>
                                 </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Price/h: " Foreground="#CB3434"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CarDetails.Price}" Foreground="#CB3434"/>
-                                </Grid>
-                                <Button Content="Order" Tag="{Binding Id}" BorderBrush="#CB3434" Background="White" Foreground="#CB3434" Height="40" Click="createReservationWindow" VerticalAlignment="Bottom"/>
+                                <Button Content="Order" Tag="{Binding Id}"  Background="#CB3434" BorderBrush="Black" Foreground="White" Height="40" Click="createReservationWindow" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

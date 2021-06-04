@@ -5,17 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent.Views"
         mc:Ignorable="d"
-       Title="ReservationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+       Title="KarRent" Height="365.546" Width="634.874" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <RadioButton x:Name="rbtn1" Content="RadioButton" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn1_Click"/>
-        <RadioButton x:Name="rbtn2" Content="RadioButton" HorizontalAlignment="Left" Margin="10,306,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn2_Click"/>
-        <RadioButton x:Name="rbtn3" Content="RadioButton" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn3_Click"/>
-        <DatePicker x:Name="dpckBegin" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckBegin_SelectedDateChanged"/>
-        <DatePicker x:Name="dpckEnd" HorizontalAlignment="Left" Margin="157,235,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckEnd_SelectedDateChanged"/>
-        <Image x:Name="imgCar" HorizontalAlignment="Left" Height="220" Margin="537,10,0,0" VerticalAlignment="Top" Width="245"/>
-        <TextBlock x:Name="txtCarDetails" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="220" Width="251"/>
-        <Button x:Name="btnOrder" Content="Order" HorizontalAlignment="Left" Margin="648,301,0,0" VerticalAlignment="Top" Width="106" Height="40" Click="btnOrder_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
-        <Label x:Name="lblCost" Content="Cost:" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblPrice" Content="" HorizontalAlignment="Left" Margin="51,346,0,0" VerticalAlignment="Top" Width="98"/>
+        <RadioButton x:Name="rbtn1" Content="RadioButton" HorizontalAlignment="Left" Margin="16,220,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn1_Click"/>
+        <RadioButton x:Name="rbtn2" Content="RadioButton" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn2_Click"/>
+        <RadioButton x:Name="rbtn3" Content="RadioButton" HorizontalAlignment="Left" Margin="16,260,0,0" VerticalAlignment="Top" GroupName="SecurityPackage" Click="rbtn3_Click"/>
+        <DatePicker x:Name="dpckBegin" HorizontalAlignment="Left" Margin="16,169,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckBegin_SelectedDateChanged"/>
+        <DatePicker x:Name="dpckEnd" HorizontalAlignment="Left" Margin="163,169,0,0" VerticalAlignment="Top" SelectedDateChanged="dpckEnd_SelectedDateChanged"/>
+        <Image x:Name="imgCar" HorizontalAlignment="Left" Height="290" Margin="281,10,0,0" VerticalAlignment="Top" Width="313" Stretch="Fill"/>
+        <Button x:Name="btnOrder" Content="Order" HorizontalAlignment="Left" Margin="180,280,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="btnOrder_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+        <Label x:Name="lblCost" Content="Cost:" HorizontalAlignment="Left" Margin="16,280,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPrice" Content="" HorizontalAlignment="Left" Margin="57,280,0,0" VerticalAlignment="Top" Width="98"/>
+        <Label x:Name="lblBrand" Content="Brand" Foreground="Red" Margin="10,10,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lblModel" Content="Model" Foreground="Red" Margin="10,35,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lblHorsePower" Content="Horse power" Foreground="Red" Margin="10,60,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lblBodyType" Content="Body type" Foreground="Red" Margin="10,85,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lblEngineType" Content="Engine type" Foreground="Red" Margin="10,110,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="lblPricee" Content="Price" Foreground="Red" Margin="10,135,0,0" FontSize="15" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

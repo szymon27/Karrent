@@ -40,7 +40,12 @@ namespace Karrent.Views
             securityPackages = DBManager.GetInstance().GetSecurityPackages();
             if (car != null)
             {
-                txtCarDetails.Text = car.ToString();
+                lblBrand.Content = "Brand: " + car.CarDetails.Brand;
+                lblModel.Content = "Model: " + car.CarDetails.Model;
+                lblHorsePower.Content = "Horse power: " + car.CarDetails.HorsePower;
+                lblBodyType.Content = "Body type: " + car.CarDetails.BodyType;
+                lblEngineType.Content = "Engine type: " + car.CarDetails.EngineType;
+                lblPricee.Content = "Price: " + car.CarDetails.Price;
                 imgCar.Source = car.CarDetails.Photo;
             }
             //foreach (ReservationPeriod e in reservationPeriods) //usuniety label

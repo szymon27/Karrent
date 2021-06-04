@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent.Views"
         mc:Ignorable="d"
-        Title="ControlPanelWindow" Height="450" Width="800" MaxWidth="800" MaxHeight="600" MinHeight="600" MinWidth="800">
+        Title="KarRent" Height="450" Width="800" ResizeMode="NoResize">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -34,7 +34,7 @@
         </Grid>
         <Grid x:Name="gridPanels" Grid.Row="1" Grid.Column="0">
             <StackPanel x:Name="stackPanelAddUser" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
-                <Grid x:Name="gridAddUser" Margin="0, 0, 0, 0">
+                <Grid x:Name="gridAddUser" Margin="250, 0, 250, 0" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130"></ColumnDefinition>
                         <ColumnDefinition Width="200"></ColumnDefinition>
@@ -61,10 +61,12 @@
                     <Label x:Name="lblSurname" Content="Surname" HorizontalAlignment="Left" Margin="5,5,0,5" Width="119" Height="23" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     <DatePicker x:Name="dateBrthDate" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     <Label x:Name="lblBirthDate" Content="Birth date:" HorizontalAlignment="Left" Margin="5,5,0,5" Width="119" Height="23" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                    <RadioButton x:Name="rbtnEmployee" Content="Employee" HorizontalAlignment="Left" Margin="5,5,0,5" IsChecked="True" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <RadioButton x:Name="rbtnManager" Content="Manager" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <RadioButton x:Name="rbtnCustomer" Content="Customer" HorizontalAlignment="Left" Margin="90,10,-29,10" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <Button x:Name="btnAddUserDone" Content="Done" HorizontalAlignment="Center" Margin="5,5,0,5" Width="75" Click="btnAddUserDone_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                        <RadioButton x:Name="rbtnEmployee" Content="Employee" HorizontalAlignment="Left" Margin="10" IsChecked="True" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                        <RadioButton x:Name="rbtnManager" Content="Manager" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                        <RadioButton x:Name="rbtnCustomer" Content="Customer" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                    </StackPanel>
+                    <Button x:Name="btnAddUserDone" Content="Done" HorizontalAlignment="Center" Margin="80,7,150,8" Width="100" Click="btnAddUserDone_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
             <StackPanel x:Name="stackPanelEditUser" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
@@ -97,9 +99,11 @@
                     <Label x:Name="lblSurnameE" Content="Surname" HorizontalAlignment="Left" Margin="5,5,0,5" Width="119" Height="23" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     <DatePicker x:Name="dateBrthDateE" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     <Label x:Name="lblBirthDateE" Content="Birth date:" HorizontalAlignment="Left" Margin="5,5,0,5" Width="119" Height="23" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                    <RadioButton x:Name="rbtnEmployeeE" Content="Employee" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <RadioButton x:Name="rbtnManagerE" Content="Manager" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
-                    <RadioButton x:Name="rbtnCustomerE" Content="Customer" HorizontalAlignment="Left" Margin="90,10,-29,10" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                        <RadioButton x:Name="rbtnEmployeeE" Content="Employee" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                        <RadioButton x:Name="rbtnManagerE" Content="Manager" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                        <RadioButton x:Name="rbtnCustomerE" Content="Customer" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="type"/>
+                    </StackPanel>
                     <Button x:Name="btnEditUserDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" Width="75" Click="btnEditUserDone_Click" Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                     <RadioButton x:Name="rbtnActiveE" Content="Active" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
                     <RadioButton x:Name="rbtnInActiveE" Content="Inactive" HorizontalAlignment="Left" Margin="5,5,0,5" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" GroupName="active"/>
@@ -137,12 +141,12 @@
                     <Label x:Name="lblModel" Content="Model:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="1"/>
                     <Label x:Name="lblHP" Content="Horse power:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="2"/>
                     <Label x:Name="lblPrice" Content="Price:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="3"/>
-                    <TextBox x:Name="txtBrand" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="0"/>
-                    <TextBox x:Name="txtModel" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="1"/>
-                    <TextBox x:Name="txtHorsePower" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2"/>
-                    <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="3"/>
-                    <ComboBox x:Name="cbxBodyTypes" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="4"/>
-                    <ComboBox x:Name="cbxEngineTypes" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="5"/>
+                    <TextBox x:Name="txtBrand" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="0"/>
+                    <TextBox x:Name="txtModel" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="1"/>
+                    <TextBox x:Name="txtHorsePower" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="2"/>
+                    <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="3"/>
+                    <ComboBox x:Name="cbxBodyTypes" HorizontalAlignment="Left" Margin="5,7,0,7" VerticalAlignment="Center" Width="175" Height="26" Grid.Column="1" Grid.Row="4"/>
+                    <ComboBox x:Name="cbxEngineTypes" HorizontalAlignment="Left" Margin="5,7,0,7" VerticalAlignment="Center" Width="175" Height="26" Grid.Column="1" Grid.Row="5"/>
                     <Label x:Name="lblBodyType" Content="Body type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="4"/>
                     <Label x:Name="lblEngineType" Content="Engine type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="5"/>
                     <Button x:Name="btnAddModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="6" Click="btnAddModelDone_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
@@ -173,12 +177,12 @@
                     <Label x:Name="lblModelE" Content="Model:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="2"/>
                     <Label x:Name="lblHorsePowerE" Content="Horse power:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="3"/>
                     <Label x:Name="lblPriceE" Content="Price:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="4"/>
-                    <TextBox x:Name="txtBrandE" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="1"/>
-                    <TextBox x:Name="txtModelE" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="2"/>
-                    <TextBox x:Name="txtHorsePowerE" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="3"/>
-                    <TextBox x:Name="txtPriceE" HorizontalAlignment="Left" Height="26" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="4"/>
-                    <ComboBox x:Name="cbxBodyTypesE" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="5"/>
-                    <ComboBox x:Name="cbxEngineTypesE" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="120" Height="26" Grid.Column="1" Grid.Row="6"/>
+                    <TextBox x:Name="txtBrandE" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="1"/>
+                    <TextBox x:Name="txtModelE" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="2"/>
+                    <TextBox x:Name="txtHorsePowerE" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="3"/>
+                    <TextBox x:Name="txtPriceE" HorizontalAlignment="Left" Height="26" Margin="5,7,0,7" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Grid.Column="1" Grid.Row="4"/>
+                    <ComboBox x:Name="cbxBodyTypesE" HorizontalAlignment="Left" Margin="5,7,0,7" VerticalAlignment="Center" Width="175" Height="26" Grid.Column="1" Grid.Row="5"/>
+                    <ComboBox x:Name="cbxEngineTypesE" HorizontalAlignment="Left" Margin="5,7,0,7" VerticalAlignment="Center" Width="175" Height="26" Grid.Column="1" Grid.Row="6"/>
                     <Label x:Name="lblBodyTypeE" Content="Body type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="5"/>
                     <Label x:Name="lblEngineTypeE" Content="Engine type:" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="123" Grid.Column="0" Grid.Row="6"/>
                     <Button x:Name="btnEditModelDone" Content="Done" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="7" Click="btnEditModelDone_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
@@ -232,7 +236,7 @@
                     <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden" d:IsHidden="True">
+            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid x:Name="gridEditCar" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" ></ColumnDefinition>
