@@ -39,11 +39,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="cmbSorting" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbSorting_SelectionChanged" Grid.Column="0" Grid.Row="0"/>
-            <ComboBox x:Name="cmbFilterBrand" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterBrand_SelectionChanged" Grid.Column="1" Grid.Row="0"/>
-            <ComboBox x:Name="cmbFilterModel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterModel_SelectionChanged" Grid.Column="2" Grid.Row="0"/>
-            <ComboBox x:Name="cmbFilterBodyType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterBodyType_SelectionChanged" Grid.Column="3" Grid.Row="0" />
-            <ComboBox x:Name="cmbFilterEngineType" Text="SORTUJ" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterEngineType_SelectionChanged" Grid.Column="4"/>
+            <ComboBox x:Name="cmbSorting" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbSorting_SelectionChanged" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="cmbFilterBrand" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterBrand_SelectionChanged" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="cmbFilterModel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterModel_SelectionChanged" Grid.Column="2" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="cmbFilterBodyType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterBodyType_SelectionChanged" Grid.Column="3" Grid.Row="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="cmbFilterEngineType" Text="SORTUJ" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cmbFilterEngineType_SelectionChanged" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             <Button x:Name="btnRemoveFilters" Content ="Remove Filters" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnRemoveFilters_Click" Grid.Column="5" Grid.Row="0" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
             <Button x:Name="btnRefresh" Content ="Refresh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnRefresh_Click" Grid.Column="6" Grid.Row="0" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
         </Grid>
