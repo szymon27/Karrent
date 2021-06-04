@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Karrent.Views"
         mc:Ignorable="d"
-        Title="KarRent" Height="450" Width="800" ResizeMode="NoResize">
+        Title="KarRent" Height="470" Width="800" ResizeMode="NoResize">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -236,22 +236,22 @@
                     <Button x:Name="btnAddCarDone" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Click="btnAddCarDone_Click" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <StackPanel x:Name="stackPanelEditCar" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid x:Name="gridEditCar" Margin="5,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="130" ></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"></RowDefinition>
-                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="dgCarsE" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
+                    <DataGrid x:Name="dgCarsE" Margin="0,0,0,10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Brand" Binding="{Binding CarDetails.Brand}" Width="*"></DataGridTextColumn>
@@ -261,7 +261,7 @@
                             <DataGridTextColumn Header="Inspection date" Binding="{Binding InspectionDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="dgCarDetailsE" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding CarDetails}" AutoGenerateColumns="False" SelectionChanged="dgCarDetailsE_SelectionChanged">
+                    <DataGrid x:Name="dgCarDetailsE" Margin="0,0,0,10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding CarDetails}" AutoGenerateColumns="False" SelectionChanged="dgCarDetailsE_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" Width="*"></DataGridTextColumn>
@@ -278,46 +278,46 @@
                     <TextBox x:Name="txtMileageE" HorizontalAlignment="Left" Height="30" Margin="5,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Column="1" Grid.Row="3" VerticalContentAlignment="Center" MaxHeight="40"/>
                     <Label x:Name="lblInspectionDateE" Content="Inspection date" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Center" Width="115" Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="40" Height="30"/>
                     <DatePicker x:Name="dateInspectionDateE" HorizontalAlignment="Left" Margin="5,5,0,5" Width="120" Height="23" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                    <RadioButton x:Name="rbtnCarActive" GroupName="carActive" Grid.Column="0" Grid.Row="5" Content="Active" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
-                    <RadioButton x:Name="rbtnCarInActive" GroupName="carActive" Grid.Column="1" Grid.Row="5" Content="Inactive" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,15,0,0"/>
+                    <RadioButton x:Name="rbtnCarActive" GroupName="carActive" Grid.Column="0" Grid.Row="5" Content="Active" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,3,0,0"/>
+                    <RadioButton x:Name="rbtnCarInActive" GroupName="carActive" Grid.Column="1" Grid.Row="5" Content="Inactive" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,3,0,0"/>
                     <Button x:Name="btnAddCarDoneE" Content="Done" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" Width="107" Height="30" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" MaxHeight="40" Click="btnAddCarDoneE_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible">
-                <Grid x:Name="gridRaports" Margin="5,5,0,5">
+            <StackPanel x:Name="stackPanelRaports" Grid.Row="0" Grid.Column="0" Visibility="Visible" d:IsHidden="True">
+                <Grid x:Name="gridRaports" Margin="5,5,0,5" Height="380">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="180" ></ColumnDefinition>
-                        <ColumnDefinition Width="268"></ColumnDefinition>
-                        <ColumnDefinition Width="113"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="382" ></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label x:Name="lblRaportPeriodOfTime" Content="Raport from period of time." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"></Label>
-                    <DatePicker x:Name="dateBeginR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"></DatePicker>
-                    <DatePicker x:Name="dateEndR" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"></DatePicker>
-                    <Button x:Name="btnGenerateTimePeriod" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Click="btnGenerateTimePeriod_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
+                    <DatePicker x:Name="dateBeginR" Grid.Column="0" Grid.Row="1" Height="25" Width="110" Margin="10,19,262,0"/>
+                    <DatePicker x:Name="dateEndR" Grid.Column="0" Grid.Row="1" Height="25" Width="110" Margin="125,19,147,0"/>
+                    <Button x:Name="btnGenerateTimePeriod" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Click="btnGenerateTimePeriod_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
-                    <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" Grid.Row="1" FontSize="12" Margin="0,0,123,24">
+                    <CheckBox x:Name="chbxNewUsers" Content="New users" Grid.Column="0" FontSize="12" Margin="10,5,266,31" Grid.Row="1">
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
                         </CheckBox.LayoutTransform>
                     </CheckBox>
-                    <CheckBox x:Name="chbxReservationsTime" Content="Reservations" Grid.Column="0" Grid.Row="1" Margin="57,0,34,24" FontSize="12">
+                    <CheckBox x:Name="chbxReservationsTime" Content="Reservations" Grid.Column="0" Grid.Row="1" Margin="72,5,103,31" FontSize="12">
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
                         </CheckBox.LayoutTransform>
                     </CheckBox>
 
                     <Label x:Name="lblRaportAboutCar" Content="Raport about car." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2"></Label>
-                    <DataGrid x:Name="dgridCarsR" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
+                    <DataGrid x:Name="dgridCarsR" Margin="0, 15, 0, 10" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="White" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding Car}" AutoGenerateColumns="False" SelectionChanged="dgCarsE_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Brand" Binding="{Binding CarDetails.Brand}" Width="*"></DataGridTextColumn>
@@ -327,16 +327,16 @@
                             <DataGridTextColumn Header="Inspection date" Binding="{Binding InspectionDate, StringFormat=yyyy-MM-dd}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Click="btnGenerateAboutCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
+                    <Button x:Name="btnGenerateAboutCar" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Click="btnGenerateAboutCar_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
-                    <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="0,0,92,23">
+                    <CheckBox x:Name="chbxReservationsCar" Content="Reservations" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="0,0,116,53">
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
                         </CheckBox.LayoutTransform>
                     </CheckBox>
 
                     <Label x:Name="lblRaportAboutUser" Content="Raport about user." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="4"></Label>
-                    <DataGrid x:Name="dgridUsersR" SelectionMode="Single" Background="White" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" IsReadOnly="True" ItemsSource="{Binding User}" AutoGenerateColumns="False" SelectionChanged="dgUsers_SelectionChanged">
+                    <DataGrid x:Name="dgridUsersR" SelectionMode="Single" Margin="0,15,0,0" Background="White" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" IsReadOnly="True" ItemsSource="{Binding User}" AutoGenerateColumns="False" SelectionChanged="dgUsers_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
@@ -347,15 +347,15 @@
                             <DataGridTextColumn Header="Is active" Binding="{Binding IsActive}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" Click="btnGenerateAboutUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
+                    <Button x:Name="btnGenerateAboutUser" Content="Generate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Click="btnGenerateAboutUser_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
 
-                    <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" FontSize="12" Margin="0,0,91,24" >
+                    <CheckBox x:Name="chbxReservationsUser" Content="Reservations" Grid.Column="0" Grid.Row="5" FontSize="12" Margin="0,0,134,54" >
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
                         </CheckBox.LayoutTransform>
                     </CheckBox>
 
-                    <TextBox x:Name="tbxRaport" Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"/>
+                    <TextBox x:Name="tbxRaport" Grid.Column="2" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSave" Content="Save" Grid.Row="6" Grid.Column="3" Click="btnSave_Click" Background="#CB3434" BorderBrush="Black" Foreground="White"></Button>
                 </Grid>
             </StackPanel>

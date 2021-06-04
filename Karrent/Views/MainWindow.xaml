@@ -57,8 +57,8 @@
                                 <Image Source="{Binding CarDetails.Photo}" Stretch="Fill" Width="195" Height="130"></Image>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"></ColumnDefinition>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Horizontal" Grid.Column="0">
                                         <TextBlock Text="{Binding CarDetails.Brand}" Foreground="#CB3434" FontSize="15"/>
